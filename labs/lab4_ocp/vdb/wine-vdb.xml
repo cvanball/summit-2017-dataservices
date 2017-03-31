@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vdb name="wine" version="1">
+<description/>
+<property name="validationDateTime" value="Fri Dec 16 09:20:47 CET 2016"/>
+<property name="validationVersion" value="8.12.9"/>
+<model name="postgresql_ds">
+<source connection-jndi-name="java:/postgresql_ds" name="postgresql_ds" translator-name="postgresql"/>
+<metadata type="DDL"><![CDATA[
+CREATE FOREIGN TABLE wine_PG (
+        wine_id integer NOT NULL OPTIONS(NAMEINSOURCE '"wine_id"', NATIVE_TYPE 'INTEGER', FIXED_LENGTH 'TRUE'),
+        vineyard string(255) NOT NULL OPTIONS(NAMEINSOURCE '"vineyard"', NATIVE_TYPE 'VARCHAR'),
+        varietal string(255) NOT NULL OPTIONS(NAMEINSOURCE '"varietal"', NATIVE_TYPE 'VARCHAR'),
+        name string(255) NOT NULL OPTIONS(NAMEINSOURCE '"name"', NATIVE_TYPE 'VARCHAR'),
+        "year" integer NOT NULL OPTIONS(NAMEINSOURCE '"year"', NATIVE_TYPE 'INTEGER', FIXED_LENGTH 'TRUE'),
+        country string(255) NOT NULL OPTIONS(NAMEINSOURCE '"name"', NATIVE_TYPE 'VARCHAR'),
+        CONSTRAINT wine_pkey PRIMARY KEY(wine_id)
+) OPTIONS(NAMEINSOURCE '"public"."wine"', UPDATABLE 'TRUE')
+]]></metadata>
+</model>
+<model name="Services" type="VIRTUAL">
+<metadata type="DDL"><![CDATA[
+CREATE VIEW wine (
+        wine_id integer NOT NULL,
+        vineyard string(255) NOT NULL,
+        varietal string(255) NOT NULL,
+        name string(255) NOT NULL,
+        "year" integer NOT NULL,
+        country string(255),
+        CONSTRAINT wine_pkey PRIMARY KEY(wine_id)
+)
+AS
+        SELECT 1, 'WINE', 'WINE', '2017', 99, 'SCOTLAND';
+]]></metadata>
+</model>
+</vdb>

@@ -46,44 +46,9 @@
             "required": false
         },
         {
-            "description": "Set this to the relative path to your project if it is not in the root of your repository.",
-            "displayName": "Context Directory for Food Service",
-            "name": "CONTEXT_DIR_FOOD_SERVICE",
-            "value": "/labs/lab4/projects/food-service",
-            "required": false
-        },
-        {
-            "description": "Set this to the relative path to your project if it is not in the root of your repository.",
-            "displayName": "Context Directory for Wine Service",
-            "name": "CONTEXT_DIR_WINE_SERVICE",
-            "value": "/labs/lab4/projects/wine-service",
-            "required": false
-        },
-        {
-            "description": "Set this to the relative path to your project if it is not in the root of your repository.",
-            "displayName": "Context Directory for ui Service",
-            "name": "CONTEXT_DIR_UI_SERVICE",
-            "value": "/labs/lab4/projects/ui-service",
-            "required": false
-        },
-        {
-            "description": "Set this to the relative path to your project if it is not in the root of your repository.",
-            "displayName": "Context Directory for VDB",
-            "name": "CONTEXT_DIR_VDB",
-            "value": "/labs/lab4_ocp/vdb",
-            "required": false
-        },
-        {
-            "description": "Set this to the relative path to your project if it is not in the root of your repository.",
-            "displayName": "Context Directory for Extensions",
-            "name": "CONTEXT_DIR_EXTENSIONS",
-            "value": "/labs/lab4_ocp/extensions",
-            "required": false
-        },
-        {
             "description": "PostgreSQL Database name",
             "name": "POSTGRESQL_DATABASE",
-            "value": "RETAILDB",
+            "value": "winedb",
             "required": true
         },
         {
@@ -329,12 +294,11 @@
                             "paths": [
                                 {
                                     "sourcePath": "/extensions/.",
-                                    "destinationDir": "./${CONTEXT_DIR_EXTENTIONS}/extras"
+                                    "destinationDir": "./extensions/extras"
                                 }
                             ]
                         }
-                    ],
-                    "contextDir": "${CONTEXT_DIR_VDB}"
+                    ]
                 },
                 "strategy": {
                     "type": "Source",
@@ -401,8 +365,7 @@
                 ],
                 "source": {
                     "type": "Binary",
-                    "binary": {},
-                    "contextDir": "${CONTEXT_DIR_EXTENSIONS}"
+                    "binary": {}
                 },
                 "strategy": {
                     "type": "Docker",
@@ -456,8 +419,7 @@
                 ],
                 "source": {
                     "type": "Binary",
-                    "binary": {},
-                    "contextDir": "${CONTEXT_DIR_UI_SERVICE}"
+                    "binary": {}
                 },
                 "strategy": {
                     "type": "Source",
@@ -515,8 +477,7 @@
                 ],
                 "source": {
                     "type": "Binary",
-                    "binary": {},
-                    "contextDir": "${CONTEXT_DIR_WINE_SERVICE}"
+                    "binary": {}
                 },
                 "strategy": {
                     "type": "Source",
@@ -876,11 +837,11 @@
                                         "value": "${POSTGRESQL_DATABASE}"
                                     },
                                     {
-                                        "name": "POSTGRESQL_SERVICE_HOST",
+                                        "name": "WINEDB_SERVICE_HOST",
                                         "value": "${APPLICATION_NAME}-postgresql"
                                     },
                                     {
-                                        "name": "POSTGRESQL_SERVICE_PORT",
+                                        "name": "WINEDB_SERVICE_PORT",
                                         "value": "5432"
                                     }
                                 ],
