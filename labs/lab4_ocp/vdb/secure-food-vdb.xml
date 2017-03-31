@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<vdb name="food" version="1">
+<vdb name="secure-food" version="1">
 <description/>
 <property name="validationDateTime" value="Fri Dec 16 09:20:47 CET 2016"/>
 <property name="validationVersion" value="8.12.9"/>
@@ -32,4 +32,19 @@ AS
         SELECT r_id, author, category, name, rating, country FROM postgresql_ds.food_PG;
 ]]></metadata>
 </model>
+<data-role any-authenticated="true" name="Restriction">
+<permission>
+<resource-name>Services</resource-name>
+<allow-read>true</allow-read>
+</permission>
+<permission>
+<resource-name>Services.food</resource-name>
+<condition>UCASE(country) not in  ('UK')</condition>
+</permission>
+<permission>
+<resource-name>Services.food.author</resource-name>
+<mask order="0">LEFT(author, 1) || '** is anonymous'</mask>
+</permission>
+</data-role>
 </vdb>
+
