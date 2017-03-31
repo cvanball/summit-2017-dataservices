@@ -2,7 +2,12 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "summit2017-dataservices-template"
+        "name": "rhapp",
+	"annotations": {
+	  "description": "Red Hat Food Application Template",
+	  "tags": "java,database",
+	  "version": "1.0"
+        }
     },
     "parameters": [
         {   
@@ -14,8 +19,8 @@
         {   
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "nip.io",
-            "required": true
+            "value": "",
+            "required": false
         },
         {   
             "description": "GitHub trigger secret",
@@ -194,27 +199,6 @@
                 }
             },
             "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    }
-                ],
                 "source": {
                     "type": "Binary",
                     "binary": {}
@@ -396,27 +380,6 @@
                 }
             },
             "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    }
-                ],
                 "source": {
                     "type": "Binary",
                     "binary": {}
@@ -454,27 +417,6 @@
                 }
             },
             "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
-                    }
-                ],
                 "source": {
                     "type": "Binary",
                     "binary": {}
@@ -907,14 +849,14 @@
                     {
                         "type": "ImageChange",
                         "imageChangeParams": {
-                            "automatic": false,
+                            "automatic": true,
                             "containerNames": [
                                 "${APPLICATION_NAME}-postgresql"
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "openshift",
-                                "name": "postgresql:9.4"
+                                "name": "postgresql:latest"
                             }
                         }
                     },
@@ -937,7 +879,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "${APPLICATION_NAME}-postgresql",
+                                "image": "registry.access.redhat.com/rhscl/postgresql-95-rhel7:latest",
                                 "ports": [
                                     {
                                         "containerPort": 5432,
@@ -1121,7 +1063,6 @@
                 }
             },
             "spec": {
-                "host": "jdbc-${APPLICATION_NAME}-jdv.${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1147,7 +1088,6 @@
                 }
             },
             "spec": {
-                "host": "secure-${APPLICATION_NAME}-jdv.${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1173,7 +1113,6 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_NAME}-jdv.${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1193,7 +1132,6 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_NAME}.${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-ui"
