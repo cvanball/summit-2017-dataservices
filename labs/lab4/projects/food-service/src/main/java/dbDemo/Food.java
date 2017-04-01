@@ -4,9 +4,10 @@
 **/
 package dbDemo;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -26,9 +27,10 @@ The id param of a food object will serve as its ID in the database, and will be 
 We explicitly map the id variable to the "r_id column in the database table
 **/
  @Id
- @GeneratedValue(strategy = GenerationType.AUTO)
+ @GeneratedValue(generator = "teiid-uuid")
+ @GenericGenerator(name = "teiid-uuid", strategy = "uuid")
  @Column(name="r_id")
- private int id;
+ private String id;
  // The following parameters map to the same column name in the food table
  private String name;
  private String author;
@@ -53,11 +55,11 @@ This is the constructor for the database object.
      this.country = country;
  }
 
-public int getId() {
+public String getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(String id) {
 	this.id = id;
 }
 

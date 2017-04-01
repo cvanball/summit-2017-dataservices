@@ -7,7 +7,7 @@
 <source connection-jndi-name="java:/postgresql_ds" name="postgresql_ds" translator-name="postgresql"/>
 <metadata type="DDL"><![CDATA[
 CREATE FOREIGN TABLE food_PG (
-        r_id integer NOT NULL OPTIONS(NAMEINSOURCE '"r_id"', NATIVE_TYPE 'INTEGER', FIXED_LENGTH 'TRUE'),
+        r_id string(255) NOT NULL OPTIONS(NAMEINSOURCE '"r_id"', NATIVE_TYPE 'VARCHAR'),
         author string(255) NOT NULL OPTIONS(NAMEINSOURCE '"author"', NATIVE_TYPE 'VARCHAR'),
         category string(255) NOT NULL OPTIONS(NAMEINSOURCE '"category"', NATIVE_TYPE 'VARCHAR'),
         name string(255) NOT NULL OPTIONS(NAMEINSOURCE '"name"', NATIVE_TYPE 'VARCHAR'),
@@ -20,14 +20,14 @@ CREATE FOREIGN TABLE food_PG (
 <model name="Services" type="VIRTUAL">
 <metadata type="DDL"><![CDATA[
 CREATE VIEW food (
-        r_id integer NOT NULL,
+        r_id string(255) NOT NULL,
         author string(255) NOT NULL,
         category string(255) NOT NULL,
         name string(255) NOT NULL,
         rating integer NOT NULL,
         country string(255) NOT NULL,
         CONSTRAINT food_pkey PRIMARY KEY(r_id)
-)
+) OPTIONS (UPDATABLE 'TRUE')
 AS
         SELECT r_id, author, category, name, rating, country FROM postgresql_ds.food_PG;
 ]]></metadata>

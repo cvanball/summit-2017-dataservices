@@ -251,10 +251,6 @@
                     },
                     {
                         "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {}
                     }
                 ],
                 "source": {

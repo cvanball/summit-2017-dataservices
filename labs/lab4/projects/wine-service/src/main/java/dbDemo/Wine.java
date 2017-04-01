@@ -4,9 +4,10 @@
 **/
 package dbDemo;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
@@ -25,12 +26,13 @@ The id param of a wine object will serve as its ID in the database, and will be 
 We explicitly map the id variable to the "wine_id column in the database table
 **/
  @Id
- @GeneratedValue(strategy = GenerationType.AUTO)
+ @GeneratedValue(generator = "teiid-uuid")
+ @GenericGenerator(name = "teiid-uuid", strategy = "uuid")
  @Column(name="wine_id")
- private int id;
+ private String id;
 
  private String name;
- private int yeardate;
+ private int vintageyear;
  private String vineyard;
  private String varietal;
  private String country;
@@ -39,23 +41,23 @@ We explicitly map the id variable to the "wine_id column in the database table
 /**
 This is the constructor for the database object.
 @param name The name of the  wine
-@param yeardate The wine's vintage
+@param vintageyear The wine's vintage
 @param vineyard The vineyard that the wine originated from
 @param varietal The wine's varietal
 **/
- public Wine(String name, int yeardate, String vineyard, String varietal, String country) {
+ public Wine(String name, int vintageyear, String vineyard, String varietal, String country) {
      this.name = name;
-     this.yeardate = yeardate;
+     this.vintageyear = vintageyear;
      this.vineyard = vineyard;
      this.varietal = varietal;
      this.country = country;
  }
 
-public int getId() {
+public String getId() {
 	return id;
 }
 
-public void setId(int id) {
+public void setId(String id) {
 	this.id = id;
 }
 
@@ -67,12 +69,12 @@ public void setName(String name) {
 	this.name = name;
 }
 
-public int getYearDate() {
-	return yeardate;
+public int getVintageyear() {
+	return vintageyear;
 }
 
-public void setYearDate(int yeardate) {
-	this.yeardate = yeardate;
+public void setVintageyear(int vintageyear) {
+	this.vintageyear = vintageyear;
 }
 
 public String getVineyard() {
