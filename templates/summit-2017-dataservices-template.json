@@ -89,7 +89,7 @@
         {
             "description": "PostgreSQL Database user name",
             "name": "POSTGRESQL_USERNAME",
-            "value": "postgres",
+            "value": "postgresUser",
             "required": true
         },
         {
