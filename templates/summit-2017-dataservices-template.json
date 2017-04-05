@@ -8,7 +8,7 @@
         {   
             "description": "The name for the application.",
             "name": "APPLICATION_NAME",
-            "value": "summit2017-dataservices",
+            "value": "rhapp",
             "required": true
         },
         {   
