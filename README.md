@@ -5,11 +5,12 @@ This project is an example showing how to expose data as services in a MSA on Op
 ### Prerequisites
 
 - Install oc client, see https://access.redhat.com/downloads/content/290
+- Install oc-cluster-wrapper script, see https://github.com/openshift-evangelists/oc-cluster-wrapper
 
-### Install
+### Start OpenShift environment
 
 ```
-$ oc cluster up --public-hostname='127.0.0.1'
+$ oc-cluster up
 ```
 
 ### Resources
