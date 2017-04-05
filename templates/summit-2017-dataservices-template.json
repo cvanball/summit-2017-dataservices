@@ -83,7 +83,7 @@
         {
             "description": "PostgreSQL Database name",
             "name": "POSTGRESQL_DATABASE",
-            "value": "winedb",
+            "value": "retaildb",
             "required": true
         },
         {
@@ -1007,7 +1007,7 @@
                                 "env": [
                                     {
                                         "name": "POSTGRESQL_USER",
-                                        "value": "${POSTGRESQL_USER}"
+                                        "value": "${POSTGRESQL_USERNAME}"
                                     },
                                     {
                                         "name": "POSTGRESQL_PASSWORD",
