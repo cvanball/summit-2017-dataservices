@@ -2,8 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "summit2017-dataservices-template",
-        "creationTimestamp": null
+        "name": "summit2017-dataservices-template"
     },
     "parameters": [
         {   
@@ -225,10 +224,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-food-service",
-                "creationTimestamp": null,
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -259,8 +256,7 @@
                         "uri": "${SOURCE_REPOSITORY_URL}",
                         "ref": "${SOURCE_REPOSITORY_REF}"
                     },
-                    "contextDir": "${CONTEXT_DIR_FOOD_SERVICE}",
-                    "secrets": null
+                    "contextDir": "${CONTEXT_DIR_FOOD_SERVICE}"
                 },
                 "strategy": {
                     "type": "Source",
@@ -290,15 +286,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv",
-                "creationTimestamp": null,
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "OpenShiftNewApp"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -352,8 +341,7 @@
                             ]
                         }
                     ],
-                    "contextDir": "app",
-                    "secrets": null
+                    "contextDir": "${CONTEXT_DIR_VDB}"
                 },
                 "strategy": {
                     "type": "Source",
@@ -397,15 +385,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv-ext",
-                "creationTimestamp": null,
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "OpenShiftNewApp"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -432,8 +413,7 @@
                         "uri": "${SOURCE_REPOSITORY_URL}",
                         "ref": "${SOURCE_REPOSITORY_REF}"
                     },
-                    "contextDir": "extensions",
-                    "secrets": null
+                    "contextDir": "${CONTEXT_DIR_EXTENTIONS}"
                 },
                 "strategy": {
                     "type": "Docker",
@@ -459,10 +439,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-ui",
-                "creationTimestamp": null,
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -493,7 +471,7 @@
                         "uri": "${SOURCE_REPOSITORY_URL}",
                         "ref": "${SOURCE_REPOSITORY_REF}"
                     },
-                    "secrets": null
+                    "contextDir": "${CONTEXT_DIR_UI_SERVICE}"
                 },
                 "strategy": {
                     "type": "Source",
@@ -523,10 +501,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-wine-service",
-                "creationTimestamp": null,
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -557,7 +533,7 @@
                         "uri": "${SOURCE_REPOSITORY_URL}",
                         "ref": "${SOURCE_REPOSITORY_REF}"
                     },
-                    "secrets": null
+                    "contextDir": "${CONTEXT_DIR_WINE_SERVICE}"
                 },
                 "strategy": {
                     "type": "Source",
@@ -588,11 +564,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-food-service",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
-                },
-                "annotations": {
-                    "description": "Keeps track of changes to the food-service application"
+                    "template": "${APPLICATION_NAME}"
                 }
             }
         },
@@ -602,13 +574,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv",
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "OpenShiftNewApp"
+                    "template": "${APPLICATION_NAME}"
                 }
             }
         },
@@ -618,13 +584,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv-ext",
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
-                },
-                "annotations": {
-                    "openshift.io/generated-by": "OpenShiftNewApp"
+                    "template": "${APPLICATION_NAME}"
                 }
             }
         },
@@ -634,11 +594,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-ui",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
-                },
-                "annotations": {
-                    "description": "Keeps track of changes to the UI application"
+                    "template": "${APPLICATION_NAME}"
                 }
             }
         },
@@ -648,11 +604,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-wine-service",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
-                },
-                "annotations": {
-                    "description": "Keeps track of changes to the wine-service application"
+                    "template": "${APPLICATION_NAME}"
                 }
             }
         },
@@ -661,10 +613,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-food-service",
-                "creationTimestamp": null,
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -739,16 +689,8 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv",
-                "creationTimestamp": null,
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
-                },
-                "annotations": {
-                    "openshift.io/deployment.cancelled": "10",
-                    "openshift.io/generated-by": "OpenShiftNewApp"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -784,14 +726,8 @@
                 "template": {
                     "metadata": {
                         "name": "${APPLICATION_NAME}-jdv",
-                        "creationTimestamp": null,
                         "labels": {
-                            "application": "${APPLICATION_NAME}-jdv",
-                            "deploymentConfig": "${APPLICATION_NAME}-jdv",
-                            "name": "datavirt"
-                        },
-                        "annotations": {
-                            "openshift.io/generated-by": "OpenShiftNewApp"
+                            "name": "${APPLICATION_NAME}-jdv"
                         }
                     },
                     "spec": {
@@ -1020,8 +956,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-postgresql",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -1095,8 +1030,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-ui",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -1164,8 +1098,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-wine-service",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -1240,17 +1173,11 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "jdbc-${APPLICATION_NAME}-jdv",
-                "creationTimestamp": null,
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
-                    "description": "Route for application's JDBC service.",
-                    "openshift.io/generated-by": "OpenShiftNewApp",
-                    "openshift.io/host.generated": "true"
+                    "description": "Route for application's JDBC service."
                 }
             },
             "spec": {
@@ -1272,17 +1199,11 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "secure-${APPLICATION_NAME}-jdv",
-                "creationTimestamp": null,
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
-                    "description": "Route for application's https (REST) service.",
-                    "openshift.io/generated-by": "OpenShiftNewApp",
-                    "openshift.io/host.generated": "true"
+                    "description": "Route for application's https (REST) service."
                 }
             },
             "spec": {
@@ -1304,17 +1225,11 @@
             "apiVersion": "v1",
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv",
-                "creationTimestamp": null,
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
-                    "description": "Route for application's http (REST) service.",
-                    "openshift.io/generated-by": "OpenShiftNewApp",
-                    "openshift.io/host.generated": "true"
+                    "description": "Route for application's http (REST) service."
                 }
             },
             "spec": {
@@ -1334,11 +1249,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-ui",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
-                },
-                "annotations": {
-                    "openshift.io/host.generated": "true"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -1358,8 +1269,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-food-service",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
                     "description": "Food Web Service"
@@ -1385,14 +1295,10 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-jdv",
                 "labels": {
-                    "application": "${APPLICATION_NAME}-jdv",
-                    "name": "datavirt",
-                    "template": "datavirt63-extensions-support-s2i",
-                    "xpaas": "1.4.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
-                    "description": "The data virtualization services.",
-                    "openshift.io/generated-by": "OpenShiftNewApp"
+                    "description": "The data virtualization services."
                 }
             },
             "spec": {
@@ -1433,8 +1339,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-postgresql",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 }
             },
             "spec": {
@@ -1457,8 +1362,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-ui",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
                     "description": "The UI frontend of the application"
@@ -1484,8 +1388,7 @@
             "metadata": {
                 "name": "${APPLICATION_NAME}-wine-service",
                 "labels": {
-                    "template": "${APPLICATION_NAME}",
-                    "${APPLICATION_NAME}": "1.0"
+                    "template": "${APPLICATION_NAME}"
                 },
                 "annotations": {
                     "description": "Wine Web Service"
