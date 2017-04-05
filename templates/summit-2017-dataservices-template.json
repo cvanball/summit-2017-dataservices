@@ -14,7 +14,7 @@
         {   
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "openshift.example.com",
+            "value": "nip.io",
             "required": true
         },
         {   
