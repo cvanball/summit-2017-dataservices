@@ -14,8 +14,8 @@
         {   
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "nip.io",
-            "required": true
+            "value": "",
+            "required": false
         },
         {   
             "description": "GitHub trigger secret",
