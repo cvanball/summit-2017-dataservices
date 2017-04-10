@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<vdb name="Food" version="1">
+<description/>
+<property name="validationDateTime" value="Fri Dec 16 09:20:47 CET 2016"/>
+<property name="validationVersion" value="8.12.9"/>
+<model name="WINEDB">
+<source connection-jndi-name="java:/winedb-ds" name="WINEDB" translator-name="postgresql"/>
+<metadata type="DDL"><![CDATA[
+CREATE FOREIGN TABLE FOOD_PG (
+	r_id integer NOT NULL OPTIONS(NAMEINSOURCE '"r_id"', NATIVE_TYPE 'INTEGER', FIXED_LENGTH 'TRUE'),
+	author string(255) NOT NULL OPTIONS(NAMEINSOURCE '"author"', NATIVE_TYPE 'VARCHAR'),
+	category string(255) NOT NULL OPTIONS(NAMEINSOURCE '"category"', NATIVE_TYPE 'VARCHAR'),
+	name string(255) NOT NULL OPTIONS(NAMEINSOURCE '"name"', NATIVE_TYPE 'VARCHAR'),
+	rating integer NOT NULL OPTIONS(NAMEINSOURCE '"rating"', NATIVE_TYPE 'INTEGER', FIXED_LENGTH 'TRUE'),
+	CONSTRAINT food_pkey PRIMARY KEY(r_id)
+) OPTIONS(NAMEINSOURCE '"public"."food"', UPDATABLE 'TRUE')
+]]></metadata>
+</model>
+<model name="Services" type="VIRTUAL">
+<metadata type="DDL"><![CDATA[
+CREATE VIEW Food (
+	r_id integer NOT NULL,
+	author string(255) NOT NULL,
+	category string(255) NOT NULL,
+	name string(255) NOT NULL,
+	rating integer NOT NULL,
+	CONSTRAINT food_pkey PRIMARY KEY(r_id)
+)
+AS
+	SELECT 1, 'RHT', 'SUMMIT', '2017', 99;
+]]></metadata>
+</model>
+</vdb>
