@@ -17,7 +17,7 @@ The wine object will be stored in a table with the name "wine"
 **/
 @Table(name="wine")
 /**
-The Wine class defines a wine object for storage in a relational database system. 
+The Wine class defines a wine object for storage in a relational database system.
 **/
 public class Wine {
 /**
@@ -28,16 +28,17 @@ We explicitly map the id variable to the "wine_id column in the database table
  @GeneratedValue(strategy = GenerationType.AUTO)
  @Column(name="wine_id")
  private int id;
-  
- private String name; 
+
+ private String name;
  private int yeardate;
  private String vineyard;
  private String varietal;
+ private String country;
 
  protected Wine(){}
 /**
-This is the constructor for the database object. 
-@param name The name of the  wine 
+This is the constructor for the database object.
+@param name The name of the  wine
 @param yeardate The wine's vintage
 @param vineyard The vineyard that the wine originated from
 @param varietal The wine's varietal
@@ -88,6 +89,14 @@ public String getVarietal() {
 public void setVarietal(String varietal) {
 	this.varietal = varietal;
 }
- 
- 
+
+public String getCountry() {
+  return country;
+}
+
+public void setCountry(String country) {
+  this.country = country;
+}
+
+
 }

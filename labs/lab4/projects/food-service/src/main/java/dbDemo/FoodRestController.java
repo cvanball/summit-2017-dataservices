@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 //specifying endpoint location
 @RequestMapping("/food")
 public class FoodRestController {
-	
+
 	@Autowired
 	private FoodRepository repo;
 
-	/** 
+	/**
 	the getAll method retrieves all food items in the database. This is mapped to hte GET rest action
 	@return A List() of food items
 	**/
@@ -68,10 +68,9 @@ public class FoodRestController {
 		    update.setAuthor(food.getAuthor());
 		    update.setRating(food.getRating());
 		    update.setCategory(food.getCategory());
+				update.setCountry(food.getCountry());
 
 		    return repo.save(update);
 	  }
 
 	}
-
-
