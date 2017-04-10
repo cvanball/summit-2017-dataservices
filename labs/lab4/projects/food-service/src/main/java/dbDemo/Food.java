@@ -45,11 +45,12 @@ This is the constructor for the database object.
 @param rating A rating of the particular food item
 @param category Culinary category the food item belongs to
 **/
- public Food(String name, String author, int rating, String category) {
+ public Food(String name, String author, int rating, String category, String country) {
      this.name = name;
      this.author = author;
      this.rating = rating;
      this.category = category;
+     this.country = country;
  }
 
 public int getId() {

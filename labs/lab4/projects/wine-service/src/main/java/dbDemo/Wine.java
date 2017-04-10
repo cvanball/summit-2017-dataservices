@@ -43,11 +43,12 @@ This is the constructor for the database object.
 @param vineyard The vineyard that the wine originated from
 @param varietal The wine's varietal
 **/
- public Wine(String name, int yeardate, String vineyard, String varietal) {
+ public Wine(String name, int yeardate, String vineyard, String varietal, String country) {
      this.name = name;
      this.yeardate = yeardate;
      this.vineyard = vineyard;
      this.varietal = varietal;
+     this.country = country;
  }
 
 public int getId() {
