@@ -717,7 +717,7 @@
                     "metadata": {
                         "name": "${APPLICATION_NAME}-jdv",
                         "labels": {
-                            "name": "${APPLICATION_NAME}"
+                            "name": "${APPLICATION_NAME}-jdv"
                         }
                     },
                     "spec": {
