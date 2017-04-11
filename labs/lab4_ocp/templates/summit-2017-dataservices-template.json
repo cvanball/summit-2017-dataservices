@@ -35,7 +35,7 @@
             "description": "The URL of the repository with your application source code.",
             "displayName": "Git Repository URL",
             "name": "SOURCE_REPOSITORY_URL",
-            "value": "https://github.com/cvanball/summit-2017-dataservices",
+            "value": "https://github.com/cvanball/summit-2017-dataservices.git",
             "required": true
         },
         {
@@ -49,35 +49,35 @@
             "description": "Set this to the relative path to your project if it is not in the root of your repository.",
             "displayName": "Context Directory for Food Service",
             "name": "CONTEXT_DIR_FOOD_SERVICE",
-            "value": "labs/lab4/projects/food-service",
+            "value": "/labs/lab4/projects/food-service",
             "required": false
         },
         {
             "description": "Set this to the relative path to your project if it is not in the root of your repository.",
             "displayName": "Context Directory for Wine Service",
             "name": "CONTEXT_DIR_WINE_SERVICE",
-            "value": "labs/lab4/projects/wine-service",
+            "value": "/labs/lab4/projects/wine-service",
             "required": false
         },
         {
             "description": "Set this to the relative path to your project if it is not in the root of your repository.",
             "displayName": "Context Directory for ui Service",
             "name": "CONTEXT_DIR_UI_SERVICE",
-            "value": "labs/lab4/projects/ui-service",
+            "value": "/labs/lab4/projects/ui-service",
             "required": false
         },
         {
             "description": "Set this to the relative path to your project if it is not in the root of your repository.",
             "displayName": "Context Directory for VDB",
             "name": "CONTEXT_DIR_VDB",
-            "value": "vdb",
+            "value": "/labs/lab4_ocp/vdb",
             "required": false
         },
         {
             "description": "Set this to the relative path to your project if it is not in the root of your repository.",
             "displayName": "Context Directory for Extensions",
             "name": "CONTEXT_DIR_EXTENSIONS",
-            "value": "extensions",
+            "value": "/labs/lab4_ocp/extensions",
             "required": false
         },
         {
