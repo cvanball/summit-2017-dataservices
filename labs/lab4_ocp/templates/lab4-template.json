@@ -14,8 +14,8 @@
         {   
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "nip.io",
-            "required": true
+            "value": "",
+            "required": false
         },
         {   
             "description": "GitHub trigger secret",
@@ -946,14 +946,14 @@
                     {
                         "type": "ImageChange",
                         "imageChangeParams": {
-                            "automatic": false,
+                            "automatic": true,
                             "containerNames": [
                                 "${APPLICATION_NAME}-postgresql"
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "openshift",
-                                "name": "postgresql:9.4"
+                                "name": "postgresql"
                             }
                         }
                     },
@@ -976,7 +976,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "${APPLICATION_NAME}-postgresql",
+                                "image": "registry.access.redhat.com/rhscl/postgresql-95-rhel7:latest",
                                 "ports": [
                                     {
                                         "containerPort": 5432,
@@ -1160,7 +1160,7 @@
                 }
             },
             "spec": {
-                "host": "jdbc-${APPLICATION_NAME}-jdv.${APPLICATION_DOMAIN}",
+                "host": "jdbc-${APPLICATION_NAME}-jdv",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1186,7 +1186,7 @@
                 }
             },
             "spec": {
-                "host": "secure-${APPLICATION_NAME}-jdv.${APPLICATION_DOMAIN}",
+                "host": "secure-${APPLICATION_NAME}-jdv",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1212,7 +1212,7 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_NAME}-jdv.${APPLICATION_DOMAIN}",
+                "host": "${APPLICATION_NAME}-jdv",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1232,7 +1232,7 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_NAME}.${APPLICATION_DOMAIN}",
+                "host": "${APPLICATION_NAME}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-ui"
