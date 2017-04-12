@@ -362,7 +362,6 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "namespace": "rhtsummit2017",
                         "name": "${APPLICATION_NAME}-jdv:latest"
                     }
                 },
@@ -647,19 +646,19 @@
                                 "env": [
                                     {
                                         "name": "DATABASE_FQDN",
-                                        "value": "${APPLICATION_NAME}-postgresql"
+                                        "value": "${APPLICATION_NAME}-jdv"
                                     },
                                     {
                                         "name": "DATABASE_NAME",
-                                        "value": "${POSTGRESQL_DATABASE}"
+                                        "value": "Food"
                                     },
                                     {
                                         "name": "DATABASE_USER",
-                                        "value": "${POSTGRESQL_USERNAME}"
+                                        "value": "${TEIID_USERNAME}"
                                     },
                                     {
                                         "name": "DATABASE_PASSWORD",
-                                        "value": "${POSTGRESQL_PASSWORD}"
+                                        "value": "${TEIID_PASSWORD}"
                                     }
                                 ]
                             }
@@ -679,17 +678,7 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Recreate",
-                    "recreateParams": {
-                        "post": {
-                            "failurePolicy": "Abort",
-                            "execNewPod": {
-                                "containerName": "${APPLICATION_NAME}-jdv",
-                                "command": [ "bash","-c","$HOME/source/extensions/extras/initRetailDB.sh" ]
-                            }
-                        }
-                    },
-                    "resources": {}
+                    "type": "Rolling"
                 },
                 "triggers": [
                     {
@@ -711,7 +700,7 @@
                 ],
                 "replicas": 1,
                 "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}-jdv"
+                    "name": "${APPLICATION_NAME}-jdv"
                 },
                 "template": {
                     "metadata": {
@@ -1137,19 +1126,19 @@
                                 "env": [
                                     {
                                         "name": "DATABASE_FQDN",
-                                        "value": "${APPLICATION_NAME}-postgresql"
+                                        "value": "${APPLICATION_NAME}-jdv"
                                     },
                                     {
                                         "name": "DATABASE_NAME",
-                                        "value": "${POSTGRESQL_DATABASE}"
+                                        "value": "Wine"
                                     },
                                     {
                                         "name": "DATABASE_USER",
-                                        "value": "${POSTGRESQL_USERNAME}"
+                                        "value": "${TEIID_USERNAME}"
                                     },
                                     {
                                         "name": "DATABASE_PASSWORD",
-                                        "value": "${POSTGRESQL_PASSWORD}"
+                                        "value": "${TEIID_PASSWORD}"
                                     }
                                 ]
                             }
