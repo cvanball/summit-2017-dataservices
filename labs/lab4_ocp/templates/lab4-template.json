@@ -2,7 +2,12 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "summit2017-dataservices-template"
+        "name": "rhapp",
+	"annotations": {
+	  "description": "Red Hat Food Application Template",
+	  "tags": "java,database",
+	  "version": "1.0"
+        }
     },
     "parameters": [
         {   
