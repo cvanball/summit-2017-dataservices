@@ -367,14 +367,14 @@
                     {
                         "type": "ImageChange",
                         "imageChangeParams": {
-                            "automatic": false,
+                            "automatic": true,
                             "containerNames": [
                                 "${APPLICATION_NAME}-postgresql"
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "openshift",
-                                "name": "postgresql:9.4"
+                                "name": "postgresql:latest"
                             }
                         }
                     },
@@ -397,7 +397,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "registry.access.redhat.com/rhscl/postgresql-94-rhel7:latest",
+                                "image": "registry.access.redhat.com/rhscl/postgresql-95-rhel7:latest",
                                 "ports": [
                                     {
                                         "containerPort": 5432
