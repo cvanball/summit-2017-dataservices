@@ -1098,7 +1098,6 @@
                 }
             },
             "spec": {
-                "host": "jdbc-${APPLICATION_NAME}-jdv",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1124,7 +1123,6 @@
                 }
             },
             "spec": {
-                "host": "secure-${APPLICATION_NAME}-jdv",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1150,7 +1148,6 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_NAME}-jdv",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-jdv"
@@ -1170,7 +1167,6 @@
                 }
             },
             "spec": {
-                "host": "${APPLICATION_NAME}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-ui"
