@@ -23,8 +23,8 @@
         {
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "openshift.example.com",
-            "required": true
+            "value": "",
+            "required": false
         },
         {
             "description": "Database name",
@@ -157,7 +157,6 @@
                 "name": "${APPLICATION_NAME}-route"
             },
             "spec": {
-                "host": "${APPLICATION_NAME}.${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-ui"
@@ -201,32 +200,9 @@
                 "name": "${APPLICATION_NAME}-food-service"
             },
             "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
- 			}
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
                 "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
-                    },
-                    "contextDir": "labs/lab3/projects/food-service"
+                    "type": "Binary",
+                    "binary": {}
                 },
                 "strategy": {
                     "type": "Source",
@@ -253,32 +229,9 @@
                 "name": "${APPLICATION_NAME}-ui"
             },
             "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
- 			}
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
                 "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
-                    },
-                    "contextDir": "labs/lab3/projects/ui-service"
+                    "type": "Binary",
+                    "binary": {}
                 },
                 "strategy": {
                     "type": "Source",
@@ -305,32 +258,9 @@
                 "name": "${APPLICATION_NAME}-wine-service"
             },
             "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
- 			}
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
                 "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
-                    },
-                    "contextDir": "labs/lab3/projects/wine-service"
+                    "type": "Binary",
+                    "binary": {}
                 },
                 "strategy": {
                     "type": "Source",
