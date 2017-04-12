@@ -34,6 +34,7 @@ We explicitly map the id variable to the "r_id column in the database table
  private String author;
  private int rating;
  private String category;
+ private String country;
 
 
  protected Food(){}

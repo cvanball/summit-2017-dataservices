@@ -224,8 +224,9 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/tariq-islam/food-service.git"
-                    }
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+                    },
+                    "contextDir": "labs/lab3/projects/food-service"
                 },
                 "strategy": {
                     "type": "Source",
