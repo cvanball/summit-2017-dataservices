@@ -587,7 +587,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "containerName": "${APPLICATION_NAME}-jdv",
-                                "command": [ "bash","-c","$HOME/source/extensions/extras/initdb.sh" ]
+                                "command": [ "bash","-c","$HOME/source/extensions/extras/sql/initdb.sh" ]
                             }
                         }
                     }                    
