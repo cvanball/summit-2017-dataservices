@@ -222,7 +222,8 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
+                        "ref": "tariq-dev"
                     },
                     "contextDir": "labs/lab3/projects/food-service"
                 },

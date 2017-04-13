@@ -26,7 +26,7 @@ The id param of a food object will serve as its ID in the database, and will be 
 We explicitly map the id variable to the "r_id column in the database table
 **/
  @Id
- @GeneratedValue(strategy = GenerationType.AUTO)
+ @GeneratedValue(strategy = GenerationType.IDENTITY)
  @Column(name="r_id")
  private int id;
  // The following parameters map to the same column name in the food table
