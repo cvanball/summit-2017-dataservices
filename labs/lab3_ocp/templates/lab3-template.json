@@ -288,7 +288,17 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Rolling"
+                    "type": "Rolling",
+                    "rollingParams": {
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "containerName": "${APPLICATION_NAME}-food-service",
+                                "command": [ "bash","-c","$HOME/source/deployments/sql/initdb.sh" ]
+                            }
+                        }
+                    }                    
+                }                    
                },
                 "triggers": [
                     {
