@@ -556,11 +556,11 @@
                                         "value": "food"
                                     },
                                     {
-                                        "name": "DATABASE_USER",
+                                        "name": "TEIID_USERNAME",
                                         "value": "${TEIID_USERNAME}"
                                     },
                                     {
-                                        "name": "DATABASE_PASSWORD",
+                                        "name": "TEIID_PASSWORD",
                                         "value": "${TEIID_PASSWORD}"
                                     }
                                 ]
@@ -1036,11 +1036,11 @@
                                         "value": "wine"
                                     },
                                     {
-                                        "name": "DATABASE_USER",
+                                        "name": "TEIID_USERNAME",
                                         "value": "${TEIID_USERNAME}"
                                     },
                                     {
-                                        "name": "DATABASE_PASSWORD",
+                                        "name": "TEIID_PASSWORD",
                                         "value": "${TEIID_PASSWORD}"
                                     }
                                 ]
