@@ -1,11 +1,11 @@
 #!/bin/bash
 
 psql winedb << EOF
-CREATE ROLE ${POSTGRESQL_USER} superuser createdb login;
+ALTER ROLE ${POSTGRESQL_USER} superuser createdb login;
 ALTER ROLE ${POSTGRESQL_USER} WITH PASSWORD '${POSTGRESQL_PASSWORD}'
 EOF
 
-psql  winedb << EOF
+psql  winedb -U ${POSTGRESQL_USER} << EOF
 CREATE TABLE food
 (
     r_id    serial primary key,
