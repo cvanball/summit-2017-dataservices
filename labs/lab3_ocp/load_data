@@ -3,10 +3,10 @@
 # create the winedb database
 psql -c "create database winedb"
 
-psql  test2db << EOF
+psql  winedb << EOF
 CREATE TABLE food
 (
-    r_id    serial primary key not null,
+    r_id    serial primary key,
     author  VARCHAR(255),
     category  VARCHAR(255),
     name  VARCHAR(255),
@@ -15,7 +15,7 @@ CREATE TABLE food
 );
 CREATE TABLE wine
 (
-	wine_id serial primary key not null,
+	wine_id serial primary key,
 	name VARCHAR(255),
 	varietal VARCHAR(255),
 	vineyard VARCHAR(255),

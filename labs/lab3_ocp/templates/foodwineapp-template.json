@@ -441,7 +441,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "openshift",
-                                "name": "postgresql:9.4"
+                                "name": "summit2017postgresql:latest"
                             }
                         }
                     },
@@ -464,7 +464,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "registry.access.redhat.com/rhscl/postgresql-94-rhel7:latest",
+                                "image": "summit2017postgresql:latest",
                                 "ports": [
                                     {
                                         "containerPort": 5432
