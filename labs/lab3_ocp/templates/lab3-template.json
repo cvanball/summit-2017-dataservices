@@ -297,8 +297,7 @@
                                 "command": [ "bash","-c","$HOME/source/deployments/sql/initdb.sh" ]
                             }
                         }
-                    }                    
-                }                    
+                    }                                       
                },
                 "triggers": [
                     {
