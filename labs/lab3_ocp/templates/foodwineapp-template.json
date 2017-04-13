@@ -224,7 +224,8 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/tariq-islam/food-service.git"
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
+                        "contextDir": "labs/lab3/projects/food-service"
                     }
                 },
                 "strategy": {
@@ -275,7 +276,8 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/tariq-islam/ui-service.git"
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
+                        "contextDir": "labs/lab3/projects/ui-service"
                     }
                 },
                 "strategy": {
@@ -326,7 +328,8 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/tariq-islam/wine-service.git"
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
+                        "contextDir": "labs/lab3/projects/wine-service"
                     }
                 },
                 "strategy": {
