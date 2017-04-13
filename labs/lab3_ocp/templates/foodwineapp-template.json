@@ -23,8 +23,8 @@
         {
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "",
-            "required": false
+            "value": "openshift.example.com",
+            "required": true
         },
         {
             "description": "Database name",
@@ -157,6 +157,7 @@
                 "name": "${APPLICATION_NAME}-route"
             },
             "spec": {
+                "host": "${APPLICATION_NAME}.${APPLICATION_DOMAIN}",
                 "to": {
                     "kind": "Service",
                     "name": "${APPLICATION_NAME}-ui"
@@ -200,9 +201,31 @@
                 "name": "${APPLICATION_NAME}-food-service"
             },
             "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+ 			}
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
                 "source": {
-                    "type": "Binary",
-                    "binary": {}
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/tariq-islam/food-service.git"
+                    }
                 },
                 "strategy": {
                     "type": "Source",
@@ -229,9 +252,31 @@
                 "name": "${APPLICATION_NAME}-ui"
             },
             "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+ 			}
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
                 "source": {
-                    "type": "Binary",
-                    "binary": {}
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/tariq-islam/ui-service.git"
+                    }
                 },
                 "strategy": {
                     "type": "Source",
@@ -258,9 +303,31 @@
                 "name": "${APPLICATION_NAME}-wine-service"
             },
             "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+ 			}
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange"
+                    }
+                ],
                 "source": {
-                    "type": "Binary",
-                    "binary": {}
+                    "type": "Git",
+                    "git": {
+                        "uri": "https://github.com/tariq-islam/wine-service.git"
+                    }
                 },
                 "strategy": {
                     "type": "Source",
@@ -374,7 +441,7 @@
                             "from": {
                                 "kind": "ImageStreamTag",
                                 "namespace": "openshift",
-                                "name": "postgresql:latest"
+                                "name": "postgresql:9.4"
                             }
                         }
                     },
@@ -397,7 +464,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "registry.access.redhat.com/rhscl/postgresql-95-rhel7:latest",
+                                "image": "registry.access.redhat.com/rhscl/postgresql-94-rhel7:latest",
                                 "ports": [
                                     {
                                         "containerPort": 5432
