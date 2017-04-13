@@ -27,3 +27,5 @@ CREATE TABLE wine
 \copy food (author, category, name, rating, country) FROM 'food_data_to_load.csv' delimiter ',' csv
 \copy wine (name, varietal, vineyard, year, country) FROM 'wine_data_to_load.csv' delimiter ',' csv
 EOF
+
+# grant all privileges on database confluencedb to confluence-db-user;
