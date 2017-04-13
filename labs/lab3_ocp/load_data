@@ -24,6 +24,6 @@ CREATE TABLE wine
 	year integer not null,
 	country VARCHAR(255)
 );
-\copy food FROM 'food_data_to_load.csv' delimiter ',' csv
-\copy wine FROM 'wine_data_to_load.csv' delimiter ',' csv
+\copy food (author, category, name, rating, country) FROM 'food_data_to_load.csv' delimiter ',' csv
+\copy wine (name, varietal, vineyard, year, country) FROM 'wine_data_to_load.csv' delimiter ',' csv
 EOF
