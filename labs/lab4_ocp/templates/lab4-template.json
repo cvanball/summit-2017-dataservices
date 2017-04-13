@@ -1207,7 +1207,7 @@
                     }
                 ],
                 "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}-jdv"
+                    "name": "${APPLICATION_NAME}-jdv"
                 }
             }
         },
