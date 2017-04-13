@@ -1,7 +1,9 @@
 #!/bin/bash
 
-# create the winedb database
-psql -c "create database winedb"
+psql winedb << EOF
+CREATE ROLE ${POSTGRESQL_USER} superuser createdb login;
+ALTER ROLE ${POSTGRESQL_USER} WITH PASSWORD '${POSTGRESQL_PASSWORD}'
+EOF
 
 psql  winedb << EOF
 CREATE TABLE food

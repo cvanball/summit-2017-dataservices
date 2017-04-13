@@ -23,7 +23,7 @@
         {
             "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
             "name": "APPLICATION_DOMAIN",
-            "value": "openshift.example.com",
+            "value": "10.1.2.2.nip.io",
             "required": true
         },
         {
@@ -35,15 +35,13 @@
         {
             "description": "Database user name",
             "name": "DB_USERNAME",
-            "from": "user[a-zA-Z0-9]{3}",
-            "generate": "expression",
+            "value": "dbuser",
             "required": true
         },
         {
             "description": "Database user password",
             "name": "DB_PASSWORD",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
+            "value": "passwd",
             "required": true
         },
         {
@@ -224,9 +222,9 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
-                        "contextDir": "labs/lab3/projects/food-service"
-                    }
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+                    },
+                    "contextDir": "labs/lab3/projects/food-service"
                 },
                 "strategy": {
                     "type": "Source",
@@ -276,9 +274,9 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
-                        "contextDir": "labs/lab3/projects/ui-service"
-                    }
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+                    },
+                    "contextDir": "labs/lab3/projects/ui-service"
                 },
                 "strategy": {
                     "type": "Source",
@@ -328,9 +326,9 @@
                 "source": {
                     "type": "Git",
                     "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
-                        "contextDir": "labs/lab3/projects/wine-service"
-                    }
+                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+                    },
+                    "contextDir": "labs/lab3/projects/wine-service"
                 },
                 "strategy": {
                     "type": "Source",
@@ -436,7 +434,7 @@
                         "post": {
                             "failurePolicy": "Ignore",
                             "execNewPod": {
-                                "command": ["/tmp/load_data"]
+                                "command": ["/bin/sh", "/tmp/load_data"]
                             }
                         }
                     }
