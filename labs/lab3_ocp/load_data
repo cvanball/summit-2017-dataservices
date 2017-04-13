@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# create the winedb database
+psql -c "create database winedb"
+
+psql  test2db << EOF
+CREATE TABLE food
+(
+    r_id    serial primary key not null,
+    author  VARCHAR(255),
+    category  VARCHAR(255),
+    name  VARCHAR(255),
+    rating  integer not null,
+    country  VARCHAR(255)
+);
+CREATE TABLE wine
+(
+	wine_id serial primary key not null,
+	name VARCHAR(255),
+	varietal VARCHAR(255),
+	vineyard VARCHAR(255),
+	year integer not null,
+	country VARCHAR(255)
+);
+\copy food FROM 'food_data_to_load.csv' delimiter ',' csv
+\copy wine FROM 'wine_data_to_load.csv' delimiter ',' csv
+EOF
