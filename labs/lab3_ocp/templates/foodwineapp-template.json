@@ -428,7 +428,15 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Recreate"
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "post": {
+                            "failurePolicy": "Ignore",
+                            "execNewPod": {
+                                "command": ["/tmp/load_data"]
+                            }
+                        }
+                    }
                 },
                 "triggers": [
                     {
@@ -464,7 +472,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "summit2017postgresql:latest",
+                                "image": "openshift/summit2017postgresql:latest",
                                 "ports": [
                                     {
                                         "containerPort": 5432
