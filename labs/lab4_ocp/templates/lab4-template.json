@@ -581,7 +581,16 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Rolling"
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "containerName": "${APPLICATION_NAME}",
+                                "command": [ "bash","-c","$HOME/source/extensions/extras/initdb.sh" ]
+                            }
+                        }
+                    }                    
                 },
                 "triggers": [
                     {

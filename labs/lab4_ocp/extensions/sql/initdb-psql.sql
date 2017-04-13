@@ -34,19 +34,19 @@ CREATE TABLE food (
 -- WINE TABLE DATA --
 ---------------------
 INSERT INTO wine(wine_id, vineyard, varietal, name, year, country)
-VALUES (1,'XXXXXX', 'XXXXXX', 'XXXXXX', 2017,'France');
+VALUES (1,'Bordeaux', 'XXXXXX', 'Bordeaux', 2011,'France');
 INSERT INTO wine(wine_id, vineyard, varietal, name, year, country)
-VALUES (2,'XXXXXX', 'XXXXXX', 'XXXXXX', 2017,'Spain');
+VALUES (2,'Bernardus', 'XXXXXX', 'Bernardus', 2014,'USA');
 INSERT INTO wine(wine_id, vineyard, varietal, name, year, country)
-VALUES (3,'XXXXXX', 'XXXXXX', 'XXXXXX', 2017,'Hungary');
+VALUES (3,'Aldenborgh', 'XXXXXX', 'Aldenborgh Eyra', 2017,'Netherlands');
 
 ---------------------
 -- FOOD TABLE DATA --
 ---------------------
 INSERT INTO food(r_id, author, category, name, rating, country)
-VALUES (1,'XXXXXX', 'XXXXXX', 'XXXXXX', 2017,'Belgium');
+VALUES (1,'Bakery', 'Bread', 'Banguette', 2017,'France');
 INSERT INTO food(r_id, author, category, name, rating, country)
-VALUES (2,'XXXXXX', 'XXXXXX', 'XXXXXX', 2017,'UK');
+VALUES (2,'Mc Donalds', 'Fast Food', 'Big Mac', 1977,'USA');
 INSERT INTO food(r_id, author, category, name, rating, country)
-VALUES (3,'XXXXXX', 'XXXXXX', 'XXXXXX', 2017,'USA');
+VALUES (3,'Goudse', 'Agricultural', 'Cheese', 1184,'Netherlands');
 
