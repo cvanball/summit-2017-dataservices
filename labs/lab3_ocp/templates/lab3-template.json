@@ -288,16 +288,7 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Rolling",
-                    "rollingParams": {
-                        "post": {
-                            "failurePolicy": "Abort",
-                            "execNewPod": {
-                                "containerName": "${APPLICATION_NAME}-food-service",
-                                "command": [ "bash","-c","$HOME/source/deployments/sql/initdb.sh" ]
-                            }
-                        }
-                    }                                       
+                    "type": "Rolling"                                     
                },
                 "triggers": [
                     {
@@ -370,7 +361,16 @@
             },
             "spec": {
                 "strategy": {
-                    "type": "Recreate"
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "containerName": "${APPLICATION_NAME}-postgresql",
+                                "command": [ "bash","-i","-c","$HOME/source/deployments/sql/initdb.sh" ]
+                            }
+                        }
+                    }  
                 },
                 "triggers": [
                     {
