@@ -35,6 +35,7 @@ AS
 <data-role any-authenticated="true" name="Restriction">
 <permission>
 <resource-name>Services</resource-name>
+<allow-create>true</allow-create>
 <allow-read>true</allow-read>
 </permission>
 <permission>
