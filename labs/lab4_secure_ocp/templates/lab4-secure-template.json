@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "rhapp",
+        "name": "rhapp-secure",
 	"annotations": {
 	  "description": "Red Hat Food Application Template",
 	  "tags": "java,database",
@@ -13,7 +13,7 @@
         {   
             "description": "The name for the application.",
             "name": "APPLICATION_NAME",
-            "value": "rhapp",
+            "value": "rhapp-secure",
             "required": true
         },
         {   
