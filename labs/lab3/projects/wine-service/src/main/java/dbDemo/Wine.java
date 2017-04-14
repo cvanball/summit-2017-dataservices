@@ -25,7 +25,7 @@ The id param of a wine object will serve as its ID in the database, and will be 
 We explicitly map the id variable to the "wine_id column in the database table
 **/
  @Id
- @GeneratedValue(strategy = GenerationType.IDENTITY)
+ @GeneratedValue(strategy = GenerationType.AUTO)
  @Column(name="wine_id")
  private int id;
 
