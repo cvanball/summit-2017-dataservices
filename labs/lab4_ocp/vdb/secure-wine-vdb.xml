@@ -24,7 +24,7 @@ CREATE VIEW wine (
         vineyard string(255) NOT NULL,
         varietal string(255) NOT NULL,
         name string(255) NOT NULL,
-        "year" integer NOT NULL,
+        yeardate integer NOT NULL,
         country string(255) NOT NULL,
         CONSTRAINT wine_pkey PRIMARY KEY(wine_id)
 )
