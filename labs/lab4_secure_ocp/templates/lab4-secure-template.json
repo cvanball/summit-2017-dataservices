@@ -1,0 +1,1290 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "rhapp",
+	"annotations": {
+	  "description": "Red Hat Food Application Template",
+	  "tags": "java,database",
+	  "version": "1.0"
+        }
+    },
+    "parameters": [
+        {   
+            "description": "The name for the application.",
+            "name": "APPLICATION_NAME",
+            "value": "rhapp",
+            "required": true
+        },
+        {   
+            "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
+            "name": "APPLICATION_DOMAIN",
+            "value": "",
+            "required": false
+        },
+        {   
+            "description": "GitHub trigger secret",
+            "name": "GITHUB_WEBHOOK_SECRET",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Generic build trigger secret",
+            "name": "GENERIC_WEBHOOK_SECRET",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "The URL of the repository with your application source code.",
+            "displayName": "Git Repository URL",
+            "name": "SOURCE_REPOSITORY_URL",
+            "value": "https://github.com/cvanball/summit-2017-dataservices.git",
+            "required": true
+        },
+        {
+            "description": "Set this to a branch name, tag or other ref of your repository if you are not using the default branch.",
+            "displayName": "Git Reference",
+            "name": "SOURCE_REPOSITORY_REF",
+            "value": "master",
+            "required": false
+        },
+        {
+            "description": "PostgreSQL Database name",
+            "name": "POSTGRESQL_DATABASE",
+            "value": "winedb",
+            "required": true
+        },
+        {
+            "description": "PostgreSQL Database user name",
+            "name": "POSTGRESQL_USERNAME",
+            "value": "postgresUser",
+            "required": true
+        },
+        {
+            "description": "PostgreSQL Database user password",
+            "name": "POSTGRESQL_PASSWORD",
+            "value": "redhat1!",
+            "required": true
+        },
+        {
+            "description": "The name of the secret containing configuration properties for the data sources.",
+            "displayName": "Configuration Secret Name",
+            "name": "CONFIGURATION_NAME",
+            "value": "datavirt-app-config",
+            "required": true
+        },
+        {
+            "description": "The name of the service account to use for the deployment.  The service account should be configured to allow usage of the secret(s) specified by CONFIGURATION_NAME, HTTPS_SECRET and JGROUPS_ENCRYPT_SECRET.",
+            "name": "SERVICE_ACCOUNT_NAME",
+            "value": "datavirt-service-account",
+            "required": true
+        },
+        {
+            "description": "The name of the secret containing the keystore to be used for serving secure content.",
+            "displayName": "Server Keystore Secret Name",
+            "name": "HTTPS_SECRET",
+            "value": "datavirt-app-secret",
+            "required": true
+        },
+        {
+            "description": "The name of the keystore file within the secret.",
+            "displayName": "Server Keystore Filename",
+            "name": "HTTPS_KEYSTORE",
+            "value": "keystore.jks",
+            "required": false
+        },
+        {
+            "description": "The type of the keystore file (JKS or JCEKS).",
+            "displayName": "Server Keystore Type",
+            "name": "HTTPS_KEYSTORE_TYPE",
+            "value": "",
+            "required": false
+        },
+        {
+            "description": "The name associated with the server certificate.",
+            "displayName": "Server Certificate Name",
+            "name": "HTTPS_NAME",
+            "value": "jboss",
+            "required": false
+        },
+        {
+            "description": "The password for the keystore and certificate",
+            "displayName": "Server Keystore Password",
+            "name": "HTTPS_PASSWORD",
+            "value": "mykeystorepass",
+            "required": false
+        },
+        {
+            "description": "Username associated with Teiid data service.",
+            "displayName": "Teiid Username",
+            "name": "TEIID_USERNAME",
+            "value": "teiidUser",
+            "required": true
+        },
+        {
+            "description": "Password for Teiid user.",
+            "displayName": "Teiid User Password",
+            "name": "TEIID_PASSWORD",
+            "value": "redhat1!",
+            "required": true
+        },
+        {
+            "description": "Username associated with ModeShape.",
+            "displayName": "ModeShape Username",
+            "name": "MODESHAPE_USERNAME",
+            "value": "modeshapeUser",
+            "required": true
+        },
+        {
+            "description": "Password for ModeShape user.",
+            "displayName": "ModeShape User Password",
+            "name": "MODESHAPE_PASSWORD",
+            "value": "redhat1!",
+            "required": true
+        },
+        {
+            "description": "The name of the secret containing the keystore to be used for securing JGroups communications.",
+            "displayName": "JGroups Secret Name",
+            "name": "JGROUPS_ENCRYPT_SECRET",
+            "value": "datavirt-app-secret",
+            "required": false
+        },
+        {
+            "description": "The name of the keystore file within the JGroups secret.",
+            "displayName": "JGroups Keystore Filename",
+            "name": "JGROUPS_ENCRYPT_KEYSTORE",
+            "value": "jgroups.jceks",
+            "required": false
+        },
+        {
+            "description": "The name associated with the JGroups server certificate",
+            "displayName": "JGroups Certificate Name",
+            "name": "JGROUPS_ENCRYPT_NAME",
+            "value": "secret-key",
+            "required": false
+        },
+        {
+            "description": "The password for the keystore and certificate",
+            "displayName": "JGroups Keystore Password",
+            "name": "JGROUPS_ENCRYPT_PASSWORD",
+            "value": "password",
+            "required": false
+        },
+        {
+            "description": "Password used by JGroups to authenticate nodes in the cluster.",
+            "displayName": "JGroups Cluster Password",
+            "name": "JGROUPS_CLUSTER_PASSWORD",
+            "from": "[a-zA-Z0-9]{8}",
+            "generate": "expression",
+            "required": true
+        },
+        {
+            "description": "Controls whether exploded deployment content should be automatically deployed",
+            "displayName": "Deploy Exploded Archives",
+            "name": "AUTO_DEPLOY_EXPLODED",
+            "value": "false",
+            "required": false
+        }
+    ],
+    "objects": [
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-food-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Binary",
+                    "binary": {}
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "openshift",
+                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}-food-service:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChange": {}
+                    }
+                ],
+                "source": {
+                    "type": "Binary",
+                    "binary": {},
+                    "images": [
+                        {
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APPLICATION_NAME}-jdv-ext:latest"
+                            },
+                            "paths": [
+                                {
+                                    "sourcePath": "/extensions/.",
+                                    "destinationDir": "./extensions/extras"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "openshift",
+                            "name": "jboss-datavirt63-openshift:latest"
+                        },
+                        "env": [
+                            {
+                                "name": "CUSTOM_INSTALL_DIRECTORIES",
+                                "value": "extensions/*"
+                            },
+                            {
+                                "name": "VDB_DIRS"
+                            },
+                            {
+                                "name": "MAVEN_MIRROR_URL"
+                            }
+                        ],
+                        "forcePull": true
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}-jdv:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv-ext",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "triggers": [
+                    {
+                        "type": "GitHub",
+                        "github": {
+                            "secret": "${GITHUB_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "Generic",
+                        "generic": {
+                            "secret": "${GENERIC_WEBHOOK_SECRET}"
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "source": {
+                    "type": "Binary",
+                    "binary": {}
+                },
+                "strategy": {
+                    "type": "Docker",
+                    "dockerStrategy": {
+                        "dockerfilePath": "Dockerfile"
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}-jdv-ext:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-ui",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Binary",
+                    "binary": {}
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "openshift",
+                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}-ui:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-wine-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Binary",
+                    "binary": {}
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "openshift",
+                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}-wine-service:latest"
+                    }
+                },
+                "resources": {},
+                "postCommit": {}
+            },
+            "status": {
+                "lastVersion": 0
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-food-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv-ext",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-ui",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-wine-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-food-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling"
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-food-service"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APPLICATION_NAME}-food-service:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "name": "${APPLICATION_NAME}-food-service"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "name": "${APPLICATION_NAME}-food-service"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-food-service",
+                                "image": "${APPLICATION_NAME}-food-service",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "DATABASE_FQDN",
+                                        "value": "${APPLICATION_NAME}-jdv"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "food"
+                                    },
+                                    {
+                                        "name": "TEIID_USERNAME",
+                                        "value": "${TEIID_USERNAME}"
+                                    },
+                                    {
+                                        "name": "TEIID_PASSWORD",
+                                        "value": "${TEIID_PASSWORD}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Recreate",
+                    "recreateParams": {
+                        "post": {
+                            "failurePolicy": "Abort",
+                            "execNewPod": {
+                                "containerName": "${APPLICATION_NAME}-jdv",
+                                "command": [ "bash","-c","$HOME/source/extensions/extras/sql/initdb.sh" ]
+                            }
+                        }
+                    }                    
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-jdv"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APPLICATION_NAME}-jdv:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "name": "${APPLICATION_NAME}-jdv"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "${APPLICATION_NAME}-jdv",
+                        "labels": {
+                            "name": "${APPLICATION_NAME}-jdv"
+                        }
+                    },
+                    "spec": {
+                        "volumes": [
+                            {
+                                "name": "configuration",
+                                "secret": {
+                                    "secretName": "${CONFIGURATION_NAME}"
+                                }
+                            },
+                            {
+                                "name": "datavirt-keystore-volume",
+                                "secret": {
+                                    "secretName": "${HTTPS_SECRET}"
+                                }
+                            },
+                            {
+                                "name": "datavirt-jgroups-keystore-volume",
+                                "secret": {
+                                    "secretName": "${JGROUPS_ENCRYPT_SECRET}"
+                                }
+                            }
+                        ],
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-jdv",
+                                "image": "${APPLICATION_NAME}-jdv",
+                                "ports": [
+                                    {
+                                        "name": "jolokia",
+                                        "containerPort": 8778,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "http",
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "https",
+                                        "containerPort": 8443,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "jdbc",
+                                        "containerPort": 31000,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "jdbcs",
+                                        "containerPort": 31443,
+                                        "protocol": "TCP"
+                                    },
+                                    {
+                                        "name": "ping",
+                                        "containerPort": 8888,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_LABELS",
+                                        "value": "application=${APPLICATION_NAME}-jdv"
+                                    },
+                                    {
+                                        "name": "OPENSHIFT_KUBE_PING_NAMESPACE",
+                                        "valueFrom": {
+                                            "fieldRef": {
+                                                "fieldPath": "metadata.namespace"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE_DIR",
+                                        "value": "/etc/datavirt-secret-volume"
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE",
+                                        "value": "${HTTPS_KEYSTORE}"
+                                    },
+                                    {
+                                        "name": "HTTPS_KEYSTORE_TYPE",
+                                        "value": "${HTTPS_KEYSTORE_TYPE}"
+                                    },
+                                    {
+                                        "name": "HTTPS_NAME",
+                                        "value": "${HTTPS_NAME}"
+                                    },
+                                    {
+                                        "name": "HTTPS_PASSWORD",
+                                        "value": "${HTTPS_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_ENCRYPT_SECRET",
+                                        "value": "${JGROUPS_ENCRYPT_SECRET}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_ENCRYPT_KEYSTORE_DIR",
+                                        "value": "/etc/jgroups-encrypt-secret-volume"
+                                    },
+                                    {
+                                        "name": "JGROUPS_ENCRYPT_KEYSTORE",
+                                        "value": "${JGROUPS_ENCRYPT_KEYSTORE}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_ENCRYPT_NAME",
+                                        "value": "${JGROUPS_ENCRYPT_NAME}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_ENCRYPT_PASSWORD",
+                                        "value": "${JGROUPS_ENCRYPT_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "JGROUPS_CLUSTER_PASSWORD",
+                                        "value": "${JGROUPS_CLUSTER_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "AUTO_DEPLOY_EXPLODED",
+                                        "value": "${AUTO_DEPLOY_EXPLODED}"
+                                    },
+                                    {
+                                        "name": "TEIID_USERNAME",
+                                        "value": "${TEIID_USERNAME}"
+                                    },
+                                    {
+                                        "name": "TEIID_PASSWORD",
+                                        "value": "${TEIID_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "MODESHAPE_USERNAME",
+                                        "value": "${MODESHAPE_USERNAME}"
+                                    },
+                                    {
+                                        "name": "MODESHAPE_PASSWORD",
+                                        "value": "${MODESHAPE_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "ENV_FILES",
+                                        "value": "/etc/datavirt-environment/*"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE",
+                                        "value": "/etc/datavirt-secret-volume/${HTTPS_KEYSTORE}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE_TYPE",
+                                        "value": "${HTTPS_KEYSTORE_TYPE}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEY_ALIAS",
+                                        "value": "${HTTPS_NAME}"
+                                    },
+                                    {
+                                        "name": "DATAVIRT_TRANSPORT_KEYSTORE_PASSWORD",
+                                        "value": "${HTTPS_PASSWORD}"
+                                    },                                                                   
+                                    {
+                                        "name": "POSTGRESQL_USERNAME",
+                                        "value": "${POSTGRESQL_USERNAME}"
+                                    } ,  
+                                    {
+                                        "name": "POSTGRESQL_PASSWORD",
+                                        "value": "${POSTGRESQL_PASSWORD}"
+                                    } ,  
+                                    {
+                                        "name": "POSTGRESQL_DATABASE",
+                                        "value": "${POSTGRESQL_DATABASE}"
+                                    },
+                                    {
+                                        "name": "WINEDB_SERVICE_HOST",
+                                        "value": "${APPLICATION_NAME}-postgresql"
+                                    },
+                                    {
+                                        "name": "WINEDB_SERVICE_PORT",
+                                        "value": "5432"
+                                    }
+                                ],
+                                "resources": {},
+                                "volumeMounts": [
+                                    {
+                                        "name": "configuration",
+                                        "readOnly": true,
+                                        "mountPath": "/etc/datavirt-environment"
+                                    },
+                                    {
+                                        "name": "datavirt-keystore-volume",
+                                        "readOnly": true,
+                                        "mountPath": "/etc/datavirt-secret-volume"
+                                    },
+                                    {
+                                        "name": "datavirt-jgroups-keystore-volume",
+                                        "readOnly": true,
+                                        "mountPath": "/etc/jgroups-encrypt-secret-volume"
+                                    }
+                                ],
+                                "livenessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "/opt/eap/bin/livenessProbe.sh"
+                                        ]
+                                    }
+                                },
+                                "readinessProbe": {
+                                    "exec": {
+                                        "command": [
+                                            "/bin/bash",
+                                            "-c",
+                                            "/opt/eap/bin/readinessProbe.sh"
+                                        ]
+                                    }
+                                },
+                                "imagePullPolicy": "Always"
+                            }
+                        ],
+                        "terminationGracePeriodSeconds": 60,
+                        "serviceAccountName": "${SERVICE_ACCOUNT_NAME}"
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-postgresql",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Recreate"
+                },
+                "triggers": [
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-postgresql"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "namespace": "openshift",
+                                "name": "postgresql:latest"
+                            }
+                        }
+                    },
+                    {
+                        "type": "ConfigChange"
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "name": "${APPLICATION_NAME}-postgresql"
+                },
+                "template": {
+                    "metadata": {
+                        "name": "${APPLICATION_NAME}-postgresql",
+                        "labels": {
+                            "name": "${APPLICATION_NAME}-postgresql"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-postgresql",
+                                "image": "registry.access.redhat.com/rhscl/postgresql-95-rhel7:latest",
+                                "ports": [
+                                    {
+                                        "containerPort": 5432,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "POSTGRESQL_USER",
+                                        "value": "${POSTGRESQL_USERNAME}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_PASSWORD",
+                                        "value": "${POSTGRESQL_PASSWORD}"
+                                    },
+                                    {
+                                        "name": "POSTGRESQL_DATABASE",
+                                        "value": "${POSTGRESQL_DATABASE}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-ui",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling"
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-ui"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APPLICATION_NAME}-ui:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "name": "${APPLICATION_NAME}-ui"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "name": "${APPLICATION_NAME}-ui"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-ui",
+                                "image": "${APPLICATION_NAME}-ui",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "FOOD_SERVICE",
+                                        "value": "${APPLICATION_NAME}-food-service"
+                                    },
+                                    {
+                                        "name": "WINE_SERVICE",
+                                        "value": "${APPLICATION_NAME}-wine-service"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "DeploymentConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-wine-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "strategy": {
+                    "type": "Rolling"
+                },
+                "triggers": [
+                    {
+                        "type": "ConfigChange"
+                    },
+                    {
+                        "type": "ImageChange",
+                        "imageChangeParams": {
+                            "automatic": true,
+                            "containerNames": [
+                                "${APPLICATION_NAME}-wine-service"
+                            ],
+                            "from": {
+                                "kind": "ImageStreamTag",
+                                "name": "${APPLICATION_NAME}-wine-service:latest"
+                            }
+                        }
+                    }
+                ],
+                "replicas": 1,
+                "selector": {
+                    "name": "${APPLICATION_NAME}-wine-service"
+                },
+                "template": {
+                    "metadata": {
+                        "labels": {
+                            "name": "${APPLICATION_NAME}-wine-service"
+                        }
+                    },
+                    "spec": {
+                        "containers": [
+                            {
+                                "name": "${APPLICATION_NAME}-wine-service",
+                                "image": "${APPLICATION_NAME}-wine-service",
+                                "ports": [
+                                    {
+                                        "containerPort": 8080,
+                                        "protocol": "TCP"
+                                    }
+                                ],
+                                "env": [
+                                    {
+                                        "name": "DATABASE_FQDN",
+                                        "value": "${APPLICATION_NAME}-jdv"
+                                    },
+                                    {
+                                        "name": "DATABASE_NAME",
+                                        "value": "wine"
+                                    },
+                                    {
+                                        "name": "TEIID_USERNAME",
+                                        "value": "${TEIID_USERNAME}"
+                                    },
+                                    {
+                                        "name": "TEIID_PASSWORD",
+                                        "value": "${TEIID_PASSWORD}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "jdbc-${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Route for application's JDBC service."
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APPLICATION_NAME}-jdv"
+                },
+                "port": {
+                    "targetPort": "jdbcs"
+                },
+                "tls": {
+                    "termination": "passthrough"
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "secure-${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Route for application's https (REST) service."
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APPLICATION_NAME}-jdv"
+                },
+                "port": {
+                    "targetPort": "https"
+                },
+                "tls": {
+                    "termination": "passthrough"
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Route for application's http (REST) service."
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APPLICATION_NAME}-jdv"
+                },
+                "port": {
+                    "targetPort": "http"
+                }
+            }
+        },
+        {
+            "kind": "Route",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-ui",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "to": {
+                    "kind": "Service",
+                    "name": "${APPLICATION_NAME}-ui"
+                },
+                "port": {
+                    "targetPort": "web"
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-food-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Food Web Service"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "web",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "name": "${APPLICATION_NAME}-food-service"
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-jdv",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The data virtualization services."
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "http",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": "http"
+                    },
+                    {
+                        "name": "https",
+                        "protocol": "TCP",
+                        "port": 8443,
+                        "targetPort": "https"
+                    },
+                    {
+                        "name": "jdbc",
+                        "protocol": "TCP",
+                        "port": 31000,
+                        "targetPort": "jdbc"
+                    },
+                    {
+                        "name": "jdbcs",
+                        "protocol": "TCP",
+                        "port": 31443,
+                        "targetPort": "jdbcs"
+                    }
+                ],
+                "selector": {
+                    "name": "${APPLICATION_NAME}-jdv"
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-postgresql",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "postgresql",
+                        "protocol": "TCP",
+                        "port": 5432,
+                        "targetPort": 5432
+                    }
+                ],
+                "selector": {
+                    "name": "${APPLICATION_NAME}-postgresql"
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-ui",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The UI frontend of the application"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "web",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "name": "${APPLICATION_NAME}-ui"
+                }
+            }
+        },
+        {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-wine-service",
+                "labels": {
+                    "template": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "Wine Web Service"
+                }
+            },
+            "spec": {
+                "ports": [
+                    {
+                        "name": "8080-tcp",
+                        "protocol": "TCP",
+                        "port": 8080,
+                        "targetPort": 8080
+                    }
+                ],
+                "selector": {
+                    "name": "${APPLICATION_NAME}-wine-service"
+                }
+            }
+        }
+    ]
+}

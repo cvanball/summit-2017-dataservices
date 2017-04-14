@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<vdb name="secure-wine" version="1">
+<vdb name="wine" version="1">
 <description/>
 <property name="validationDateTime" value="Fri Dec 16 09:20:47 CET 2016"/>
 <property name="validationVersion" value="8.12.9"/>
@@ -39,11 +39,11 @@ AS
 </permission>
 <permission>
 <resource-name>Services.wine</resource-name>
-<condition>UCASE(country) in  ('FRANCE', 'SPAIN')</condition>
+<condition>UCASE(country) in  ('France', 'USA')</condition>
 </permission>
 <permission>
 <resource-name>Services.wine.varietal</resource-name>
-<mask order="0">'SUMMIT2017'</mask>
+<mask order="0">'Summit2017'</mask>
 </permission>
 </data-role>
 </vdb>
