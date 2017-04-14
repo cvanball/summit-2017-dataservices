@@ -1,640 +1,650 @@
 {
-    "kind": "Template",
-    "apiVersion": "v1",
-    "metadata": {
-        "name": "wineapp",
-	"annotations": {
-	  "description": "Red Hat Food Application Template",
-	  "tags": "java,database",
-	  "version": "1.0"
-        }
-    },
-    "labels": {
-      "template": "wineapp",
-      "wineapp": "1.0"
-    },
-    "parameters": [
-        {
-            "description": "The name for the application.",
-            "name": "APPLICATION_NAME",
-            "value": "wineapp",
-            "required": true
-        },
-        {
-            "description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
-            "name": "APPLICATION_DOMAIN",
-            "value": "10.1.2.2.nip.io",
-            "required": true
-        },
-        {
-            "description": "Database name",
-            "name": "DB_DATABASE",
-            "value": "winedb",
-            "required": true
-        },
-        {
-            "description": "Database user name",
-            "name": "DB_USERNAME",
-            "value": "dbuser",
-            "required": true
-        },
-        {
-            "description": "Database user password",
-            "name": "DB_PASSWORD",
-            "value": "passwd",
-            "required": true
-        },
-        {
-            "description": "GitHub trigger secret",
-            "name": "GITHUB_WEBHOOK_SECRET",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
-            "required": true
-        },
-        {
-            "description": "Generic build trigger secret",
-            "name": "GENERIC_WEBHOOK_SECRET",
-            "from": "[a-zA-Z0-9]{8}",
-            "generate": "expression",
-            "required": true
-        }
-    ],
-    "objects": [
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-wine-service",
-                "annotations": {
-		   "description": "Wine Web Service"
-		}
-
-            },
-            "spec": {
-                "ports": [
-                    {
-                        "name": "8080-tcp",
-                        "protocol": "TCP",
-                        "port": 8080,
-                        "targetPort": 8080
-                    }
-                ],
-                "selector": {
-                    "name": "${APPLICATION_NAME}-wine-service"
-                }
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-food-service",
-                "annotations": {
-		   "description": "Food Web Service"
-		}
-
-            },
-            "spec": {
-                "ports": [
-                    {
-                        "name": "web",
-                        "port": 8080,
-                        "targetPort": 8080
-                    }
-                ],
-                "selector": {
-                    "name": "${APPLICATION_NAME}-food-service"
-                }
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-postgresql"
-            },
-            "spec": {
-                "ports": [
-                    {
-                        "name": "postgresql",
-                        "port": 5432,
-                        "targetPort": 5432
-                    }
-                ],
-                "selector": {
-                    "name": "${APPLICATION_NAME}-postgresql"
-                }
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-ui",
+	"kind": "Template",
+	"apiVersion": "v1",
+	"metadata": {
+		"name": "wineapp",
 		"annotations": {
-		   "description": "The UI frontend of the application"
+			"description": "Red Hat Food Application Template",
+			"tags": "java,database",
+			"version": "1.0"
 		}
-            },
-            "spec": {
-                "ports": [
-                    {
-                        "name": "web",
-                        "port": 8080,
-                        "targetPort": 8080
-                    }
-                ],
-                "selector": {
-                    "name": "${APPLICATION_NAME}-ui"
-                }
-            }
-        },
-        {
-            "kind": "Route",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-route"
-            },
-            "spec": {
-                "host": "${APPLICATION_NAME}.${APPLICATION_DOMAIN}",
-                "to": {
-                    "kind": "Service",
-                    "name": "${APPLICATION_NAME}-ui"
-                }
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-ui",
-		"annotations": {
-			"description": "Keeps track of changes to the UI application"
+	},
+	"labels": {
+		"template": "wineapp",
+		"wineapp": "1.0"
+	},
+	"parameters": [
+		{
+			"description": "The name for the application.",
+			"name": "APPLICATION_NAME",
+			"value": "wineapp",
+			"required": true
+		},
+		{
+			"description": "Custom hostname for service routes.  Leave blank for default hostname, e.g.: <application-name>.<project>.<default-domain-suffix>",
+			"name": "APPLICATION_DOMAIN",
+			"value": "10.1.2.2.nip.io",
+			"required": true
+		},
+		{
+			"description": "Database name",
+			"name": "DB_DATABASE",
+			"value": "winedb",
+			"required": true
+		},
+		{
+			"description": "Database user name",
+			"name": "DB_USERNAME",
+			"value": "dbuser",
+			"required": true
+		},
+		{
+			"description": "Database user password",
+			"name": "DB_PASSWORD",
+			"value": "passwd",
+			"required": true
+		},
+		{
+			"description": "GitHub trigger secret",
+			"name": "GITHUB_WEBHOOK_SECRET",
+			"from": "[a-zA-Z0-9]{8}",
+			"generate": "expression",
+			"required": true
+		},
+		{
+			"description": "Generic build trigger secret",
+			"name": "GENERIC_WEBHOOK_SECRET",
+			"from": "[a-zA-Z0-9]{8}",
+			"generate": "expression",
+			"required": true
 		}
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-food-service",
-		"annotations": {
-			"description": "Keeps track of changes to the food-service application"
+	],
+	"objects": [
+		{
+			"kind": "Service",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-wine-service",
+				"annotations": {
+					"description": "Wine Web Service"
+				}
+			},
+			"spec": {
+				"ports": [
+					{
+						"name": "8080-tcp",
+						"protocol": "TCP",
+						"port": 8080,
+						"targetPort": 8080
+					}
+				],
+				"selector": {
+					"name": "${APPLICATION_NAME}-wine-service"
+				}
+			}
+		},
+		{
+			"kind": "Service",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-food-service",
+				"annotations": {
+					"description": "Food Web Service"
+				}
+			},
+			"spec": {
+				"ports": [
+					{
+						"name": "web",
+						"port": 8080,
+						"targetPort": 8080
+					}
+				],
+				"selector": {
+					"name": "${APPLICATION_NAME}-food-service"
+				}
+			}
+		},
+		{
+			"kind": "Service",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-postgresql"
+			},
+			"spec": {
+				"ports": [
+					{
+						"name": "postgresql",
+						"port": 5432,
+						"targetPort": 5432
+					}
+				],
+				"selector": {
+					"name": "${APPLICATION_NAME}-postgresql"
+				}
+			}
+		},
+		{
+			"kind": "Service",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-ui",
+				"annotations": {
+					"description": "The UI frontend of the application"
+				}
+			},
+			"spec": {
+				"ports": [
+					{
+						"name": "web",
+						"port": 8080,
+						"targetPort": 8080
+					}
+				],
+				"selector": {
+					"name": "${APPLICATION_NAME}-ui"
+				}
+			}
+		},
+		{
+			"kind": "Route",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-route"
+			},
+			"spec": {
+				"host": "${APPLICATION_NAME}.${APPLICATION_DOMAIN}",
+				"to": {
+					"kind": "Service",
+					"name": "${APPLICATION_NAME}-ui"
+				}
+			}
+		},
+		{
+			"kind": "ImageStream",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-ui",
+				"annotations": {
+					"description": "Keeps track of changes to the UI application"
+				}
+			}
+		},
+		{
+			"kind": "ImageStream",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-food-service",
+				"annotations": {
+					"description": "Keeps track of changes to the food-service application"
+				}
+			}
+		},
+		{
+			"kind": "ImageStream",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-wine-service",
+				"annotations": {
+					"description": "Keeps track of changes to the wine-service application"
+				}
+			}
+		},
+		{
+			"kind": "BuildConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-food-service"
+			},
+			"spec": {
+				"triggers": [
+					{
+						"type": "GitHub",
+						"github": {
+							"secret": "${GITHUB_WEBHOOK_SECRET}"
+						}
+					},
+					{
+						"type": "Generic",
+						"generic": {
+							"secret": "${GENERIC_WEBHOOK_SECRET}"
+						}
+					},
+					{
+						"type": "ConfigChange"
+					},
+					{
+						"type": "ImageChange"
+					}
+				],
+				"source": {
+					"type": "Git",
+					"git": {
+						"uri": "https://github.com/cvanball/summit-2017-dataservices.git",
+						"ref": "tariq-dev"
+					},
+					"contextDir": "labs/lab3/projects/food-service"
+				},
+				"strategy": {
+					"type": "Source",
+					"sourceStrategy": {
+						"from": {
+							"kind": "ImageStreamTag",
+							"namespace": "openshift",
+							"name": "jboss-webserver30-tomcat8-openshift:latest"
+						}
+					}
+				},
+				"output": {
+					"to": {
+						"kind": "ImageStreamTag",
+						"name": "${APPLICATION_NAME}-food-service:latest"
+					}
+				}
+			}
+		},
+		{
+			"kind": "BuildConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-ui"
+			},
+			"spec": {
+				"triggers": [
+					{
+						"type": "GitHub",
+						"github": {
+							"secret": "${GITHUB_WEBHOOK_SECRET}"
+						}
+					},
+					{
+						"type": "Generic",
+						"generic": {
+							"secret": "${GENERIC_WEBHOOK_SECRET}"
+						}
+					},
+					{
+						"type": "ConfigChange"
+					},
+					{
+						"type": "ImageChange"
+					}
+				],
+				"source": {
+					"type": "Git",
+					"git": {
+						"uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+					},
+					"contextDir": "labs/lab3/projects/ui-service"
+				},
+				"strategy": {
+					"type": "Source",
+					"sourceStrategy": {
+						"from": {
+							"kind": "ImageStreamTag",
+							"namespace": "openshift",
+							"name": "jboss-webserver30-tomcat8-openshift:latest"
+						}
+					}
+				},
+				"output": {
+					"to": {
+						"kind": "ImageStreamTag",
+						"name": "${APPLICATION_NAME}-ui:latest"
+					}
+				}
+			}
+		},
+		{
+			"kind": "BuildConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-wine-service"
+			},
+			"spec": {
+				"triggers": [
+					{
+						"type": "GitHub",
+						"github": {
+							"secret": "${GITHUB_WEBHOOK_SECRET}"
+						}
+					},
+					{
+						"type": "Generic",
+						"generic": {
+							"secret": "${GENERIC_WEBHOOK_SECRET}"
+						}
+					},
+					{
+						"type": "ConfigChange"
+					},
+					{
+						"type": "ImageChange"
+					}
+				],
+				"source": {
+					"type": "Git",
+					"git": {
+						"uri": "https://github.com/cvanball/summit-2017-dataservices.git"
+					},
+					"contextDir": "labs/lab3/projects/wine-service"
+				},
+				"strategy": {
+					"type": "Source",
+					"sourceStrategy": {
+						"from": {
+							"kind": "ImageStreamTag",
+							"namespace": "openshift",
+							"name": "jboss-webserver30-tomcat8-openshift:latest"
+						}
+					}
+				},
+				"output": {
+					"to": {
+						"kind": "ImageStreamTag",
+						"name": "${APPLICATION_NAME}-wine-service:latest"
+					}
+				}
+			}
+		},
+		{
+			"kind": "DeploymentConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-food-service"
+			},
+			"spec": {
+				"strategy": {
+					"type": "Rolling"
+				},
+				"triggers": [
+					{
+						"type": "ConfigChange"
+					},
+					{
+						"type": "ImageChange",
+						"imageChangeParams": {
+							"automatic": true,
+							"containerNames": [
+								"${APPLICATION_NAME}-food-service"
+							],
+							"from": {
+								"kind": "ImageStreamTag",
+								"name": "${APPLICATION_NAME}-food-service:latest"
+							}
+						}
+					}
+				],
+				"replicas": 1,
+				"selector": {
+					"name": "${APPLICATION_NAME}-food-service"
+				},
+				"template": {
+					"metadata": {
+						"labels": {
+							"name": "${APPLICATION_NAME}-food-service"
+						}
+					},
+					"spec": {
+						"containers": [
+							{
+								"name": "${APPLICATION_NAME}-food-service",
+								"image": "${APPLICATION_NAME}-food-service",
+								"ports": [
+									{
+										"containerPort": 8080,
+										"protocol": "TCP"
+									}
+								],
+								"env": [
+									{
+										"name": "DATABASE_FQDN",
+										"value": "${APPLICATION_NAME}-postgresql"
+									},
+									{
+										"name": "DATABASE_NAME",
+										"value": "${DB_DATABASE}"
+									},
+									{
+										"name": "DATABASE_USER",
+										"value": "${DB_USERNAME}"
+									},
+									{
+										"name": "DATABASE_PASSWORD",
+										"value": "${DB_PASSWORD}"
+									}
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"kind": "DeploymentConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-postgresql"
+			},
+			"spec": {
+				"strategy": {
+					"type": "Recreate",
+					"recreateParams": {
+						"post": {
+							"failurePolicy": "Ignore",
+							"execNewPod": {
+								"containerName": "${APPLICATION_NAME}-postgresql",
+								"command": [
+									"/bin/sh",
+									"-i",
+									"-c",
+									"psql winedb << EOF\nALTER ROLE ${POSTGRESQL_USER} superuser createdb login;\nALTER ROLE ${POSTGRESQL_USER} WITH PASSWORD '${POSTGRESQL_PASSWORD}'\nEOF\n\npsql  winedb -U ${POSTGRESQL_USER} << EOF\nCREATE TABLE food\n(\n    r_id    serial primary key,\n    author  VARCHAR(255),\n    category  VARCHAR(255),\n    name  VARCHAR(255),\n    rating  integer not null,\n    country  VARCHAR(255)\n);\nCREATE TABLE wine\n(\n	wine_id serial primary key,\n	name VARCHAR(255),\n	varietal VARCHAR(255),\n	vineyard VARCHAR(255),\n	year integer not null,\n	country VARCHAR(255)\n);\n\copy food (author, category, name, rating, country) FROM 'food_data_to_load.csv' delimiter ',' csv\n\copy wine (name, varietal, vineyard, year, country) FROM 'wine_data_to_load.csv' delimiter ',' csv\nEOF"
+								],
+								"env": [
+									{
+										"name": "PGPASSWORD",
+										"value": "${DB_PASSWORD}"
+									}
+								]
+							}
+						}
+					}
+				},
+				"triggers": [
+					{
+						"type": "ImageChange",
+						"imageChangeParams": {
+							"automatic": true,
+							"containerNames": [
+								"${APPLICATION_NAME}-postgresql"
+							],
+							"from": {
+								"kind": "ImageStreamTag",
+								"namespace": "openshift",
+								"name": "summit2017postgresql:latest"
+							}
+						}
+					},
+					{
+						"type": "ConfigChange"
+					}
+				],
+				"replicas": 1,
+				"selector": {
+					"name": "${APPLICATION_NAME}-postgresql"
+				},
+				"template": {
+					"metadata": {
+						"name": "${APPLICATION_NAME}-postgresql",
+						"labels": {
+							"name": "${APPLICATION_NAME}-postgresql"
+						}
+					},
+					"spec": {
+						"containers": [
+							{
+								"name": "${APPLICATION_NAME}-postgresql",
+								"image": "openshift/summit2017postgresql:latest",
+								"ports": [
+									{
+										"containerPort": 5432
+									}
+								],
+								"env": [
+									{
+										"name": "POSTGRESQL_USER",
+										"value": "${DB_USERNAME}"
+									},
+									{
+										"name": "POSTGRESQL_PASSWORD",
+										"value": "${DB_PASSWORD}"
+									},
+									{
+										"name": "POSTGRESQL_DATABASE",
+										"value": "${DB_DATABASE}"
+									}
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"kind": "DeploymentConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-ui"
+			},
+			"spec": {
+				"strategy": {
+					"type": "Rolling"
+				},
+				"triggers": [
+					{
+						"type": "ConfigChange"
+					},
+					{
+						"type": "ImageChange",
+						"imageChangeParams": {
+							"automatic": true,
+							"containerNames": [
+								"${APPLICATION_NAME}-ui"
+							],
+							"from": {
+								"kind": "ImageStreamTag",
+								"name": "${APPLICATION_NAME}-ui:latest"
+							}
+						}
+					}
+				],
+				"replicas": 1,
+				"selector": {
+					"name": "${APPLICATION_NAME}-ui"
+				},
+				"template": {
+					"metadata": {
+						"labels": {
+							"name": "${APPLICATION_NAME}-ui"
+						}
+					},
+					"spec": {
+						"containers": [
+							{
+								"name": "${APPLICATION_NAME}-ui",
+								"image": "ui",
+								"ports": [
+									{
+										"containerPort": 8080
+									}
+								],
+								"env": [
+									{
+										"name": "FOOD_SERVICE",
+										"value": "${APPLICATION_NAME}-food-service"
+									},
+									{
+										"name": "WINE_SERVICE",
+										"value": "${APPLICATION_NAME}-wine-service"
+									}
+								]
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"kind": "DeploymentConfig",
+			"apiVersion": "v1",
+			"metadata": {
+				"name": "${APPLICATION_NAME}-wine-service"
+			},
+			"spec": {
+				"strategy": {
+					"type": "Rolling"
+				},
+				"triggers": [
+					{
+						"type": "ConfigChange"
+					},
+					{
+						"type": "ImageChange",
+						"imageChangeParams": {
+							"automatic": true,
+							"containerNames": [
+								"${APPLICATION_NAME}-wine-service"
+							],
+							"from": {
+								"kind": "ImageStreamTag",
+								"name": "${APPLICATION_NAME}-wine-service:latest"
+							}
+						}
+					}
+				],
+				"replicas": 1,
+				"selector": {
+					"name": "${APPLICATION_NAME}-wine-service"
+				},
+				"template": {
+					"metadata": {
+						"labels": {
+							"name": "${APPLICATION_NAME}-wine-service"
+						}
+					},
+					"spec": {
+						"containers": [
+							{
+								"name": "${APPLICATION_NAME}-wine-service",
+								"image": "${APPLICATION_NAME}-wine-service",
+								"ports": [
+									{
+										"containerPort": 8080
+									}
+								],
+								"env": [
+									{
+										"name": "DATABASE_FQDN",
+										"value": "${APPLICATION_NAME}-postgresql"
+									},
+									{
+										"name": "DATABASE_NAME",
+										"value": "${DB_DATABASE}"
+									},
+									{
+										"name": "DATABASE_USER",
+										"value": "${DB_USERNAME}"
+									},
+									{
+										"name": "DATABASE_PASSWORD",
+										"value": "${DB_PASSWORD}"
+									}
+								]
+							}
+						]
+					}
+				}
+			}
 		}
-            }
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-wine-service",
-		"annotations": {
-			"description": "Keeps track of changes to the wine-service application"
-		}
-            }
-        },
-          {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-food-service"
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
- 			}
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git",
-                        "ref": "tariq-dev"
-                    },
-                    "contextDir": "labs/lab3/projects/food-service"
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
-                        }
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APPLICATION_NAME}-food-service:latest"
-                    }
-                }
-            }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-ui"
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
- 			}
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
-                    },
-                    "contextDir": "labs/lab3/projects/ui-service"
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
-                        }
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APPLICATION_NAME}-ui:latest"
-                    }
-                }
-            }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-wine-service"
-            },
-            "spec": {
-                "triggers": [
-                    {
-                        "type": "GitHub",
-                        "github": {
-                            "secret": "${GITHUB_WEBHOOK_SECRET}"
- 			}
-                    },
-                    {
-                        "type": "Generic",
-                        "generic": {
-                            "secret": "${GENERIC_WEBHOOK_SECRET}"
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange"
-                    }
-                ],
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "https://github.com/cvanball/summit-2017-dataservices.git"
-                    },
-                    "contextDir": "labs/lab3/projects/wine-service"
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
-                        }
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APPLICATION_NAME}-wine-service:latest"
-                    }
-                }
-            }
-        },
-        {
-            "kind": "DeploymentConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-food-service"
-            },
-            "spec": {
-                "strategy": {
-                    "type": "Rolling"
-               },
-                "triggers": [
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChangeParams": {
-                            "automatic": true,
-                            "containerNames": [
-                                "${APPLICATION_NAME}-food-service"
-                            ],
-                            "from": {
-                                "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}-food-service:latest"
-                            }
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "selector": {
-                    "name": "${APPLICATION_NAME}-food-service"
-                },
-                "template": {
-                    "metadata": {
-                        "labels": {
-                            "name": "${APPLICATION_NAME}-food-service"
-                        }
-                    },
-                    "spec": {
-                        "containers": [
-                            {
-                                "name": "${APPLICATION_NAME}-food-service",
-                                "image": "${APPLICATION_NAME}-food-service",
-                                "ports": [
-                                    {
-                                        "containerPort": 8080,
-                                        "protocol": "TCP"
-                                    }
-                                ],
-                                "env": [
-                                    {
-                                        "name": "DATABASE_FQDN",
-                                        "value": "${APPLICATION_NAME}-postgresql"
-                                    },
-                                    {
-                                        "name": "DATABASE_NAME",
-                                        "value": "${DB_DATABASE}"
-                                    },
-                                    {
-                                        "name": "DATABASE_USER",
-                                        "value": "${DB_USERNAME}"
-                                    },
-                                    {
-                                        "name": "DATABASE_PASSWORD",
-                                        "value": "${DB_PASSWORD}"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            }
-        },
-        {
-            "kind": "DeploymentConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-postgresql"
-            },
-            "spec": {
-                "strategy": {
-                    "type": "Rolling",
-                    "rollingParams": {
-                        "post": {
-                            "failurePolicy": "Ignore",
-                            "execNewPod": {
-                                "command": ["/bin/sh", "/tmp/load_data"]
-                            }
-                        }
-                    }
-                },
-                "triggers": [
-                    {
-                        "type": "ImageChange",
-                        "imageChangeParams": {
-                            "automatic": true,
-                            "containerNames": [
-                                "${APPLICATION_NAME}-postgresql"
-                            ],
-                            "from": {
-                                "kind": "ImageStreamTag",
-                                "namespace": "openshift",
-                                "name": "summit2017postgresql:latest"
-                            }
-                        }
-                    },
-                    {
-                        "type": "ConfigChange"
-                    }
-                ],
-                "replicas": 1,
-                "selector": {
-                    "name": "${APPLICATION_NAME}-postgresql"
-                },
-                "template": {
-                    "metadata": {
-                        "name": "${APPLICATION_NAME}-postgresql",
-                        "labels": {
-                            "name": "${APPLICATION_NAME}-postgresql"
-                        }
-                    },
-                    "spec": {
-                        "containers": [
-                            {
-                                "name": "${APPLICATION_NAME}-postgresql",
-                                "image": "openshift/summit2017postgresql:latest",
-                                "ports": [
-                                    {
-                                        "containerPort": 5432
-                                    }
-                                ],
-                                "env": [
-                                    {
-                                        "name": "POSTGRESQL_USER",
-                                        "value": "${DB_USERNAME}"
-                                    },
-                                    {
-                                        "name": "POSTGRESQL_PASSWORD",
-                                        "value": "${DB_PASSWORD}"
-                                    },
-                                    {
-                                        "name": "POSTGRESQL_DATABASE",
-                                        "value": "${DB_DATABASE}"
-                                    }
-                                ]
-                           }
-                        ]
-                    }
-                }
-            }
-        },
-        {
-            "kind": "DeploymentConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-ui"
-            },
-            "spec": {
-                "strategy": {
-                    "type": "Rolling"
-                },
-                "triggers": [
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChangeParams": {
-                            "automatic": true,
-                            "containerNames": [
-                                "${APPLICATION_NAME}-ui"
-                            ],
-                            "from": {
-                                "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}-ui:latest"
-                            }
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "selector": {
-                    "name": "${APPLICATION_NAME}-ui"
-                },
-                "template": {
-                    "metadata": {
-                        "labels": {
-                            "name": "${APPLICATION_NAME}-ui"
-                        }
-                    },
-                    "spec": {
-                        "containers": [
-                            {
-                                "name": "${APPLICATION_NAME}-ui",
-                                "image": "ui",
-                                "ports": [
-                                    {
-                                        "containerPort": 8080
-                                    }
-                                ],
-                                "env": [
-                                    {
-                                        "name": "FOOD_SERVICE",
-                                        "value": "${APPLICATION_NAME}-food-service"
-                                    },
-                                    {
-                                        "name": "WINE_SERVICE",
-                                        "value": "${APPLICATION_NAME}-wine-service"
-                                    }
-                               ]
-                            }
-                        ]
-                    }
-                }
-            }
-        },
-        {
-            "kind": "DeploymentConfig",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-wine-service"
-            },
-            "spec": {
-                "strategy": {
-                    "type": "Rolling"
-                },
-                "triggers": [
-                    {
-                        "type": "ConfigChange"
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChangeParams": {
-                            "automatic": true,
-                            "containerNames": [
-                                "${APPLICATION_NAME}-wine-service"
-                            ],
-                            "from": {
-                                "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}-wine-service:latest"
-                            }
-                        }
-                    }
-                ],
-                "replicas": 1,
-                "selector": {
-                    "name": "${APPLICATION_NAME}-wine-service"
-                },
-                "template": {
-                    "metadata": {
-                        "labels": {
-                            "name": "${APPLICATION_NAME}-wine-service"
-                        }
-                    },
-                    "spec": {
-                        "containers": [
-                            {
-                                "name": "${APPLICATION_NAME}-wine-service",
-                                "image": "${APPLICATION_NAME}-wine-service",
-                                "ports": [
-                                    {
-                                        "containerPort": 8080
-                                    }
-                                ],
-                                "env": [
-                                    {
-                                        "name": "DATABASE_FQDN",
-                                        "value": "${APPLICATION_NAME}-postgresql"
-                                    },
-                                    {
-                                        "name": "DATABASE_NAME",
-                                        "value": "${DB_DATABASE}"
-                                    },
-                                    {
-                                        "name": "DATABASE_USER",
-                                        "value": "${DB_USERNAME}"
-                                    },
-                                    {
-                                        "name": "DATABASE_PASSWORD",
-                                        "value": "${DB_PASSWORD}"
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                }
-            }
-        }
-    ]
+	]
 }
