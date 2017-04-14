@@ -255,15 +255,6 @@
                     {
                         "type": "ImageChange",
                         "imageChange": {}
-                    },
-                    {
-                        "type": "ImageChange",
-                        "imageChange": {
-                            "from": {
-                                "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}-jdv-ext:latest"
-                            }
-                        }
                     }
                 ],
                 "source": {
