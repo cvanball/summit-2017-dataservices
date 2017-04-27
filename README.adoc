@@ -4,10 +4,11 @@ image::cover_small.jpg[Summit Logo]
 == L104372 - Exposing data as services in a microservices architecture on OpenShift documentation
 In this hands-on lab, you’ll learn how to expose data as services in a Microservices Architecture running on Red Hat OpenShift Container Platform (OCP). See how to transform a microservices application to use data services instead of connecting directly to the underlying datasource. 
 In this lab, you'll learn how to use to: 
-Quickly develop a basic container-based application 
-Reuse container images from the Red Hat container registry 
-Migrate a simple microservices application to a containerized version using data services to connect to the underlying data sources
-Get a feel for Red Hat OpenShift Container Platform (OCP)
+
+* Quickly develop a basic container-based application 
+* Reuse container images from the Red Hat container registry 
+* Migrate a simple microservices application to a containerized version using data services to connect to the underlying data sources
+* Get a feel for Red Hat OpenShift Container Platform (OCP)
 
 You'll also learn what tools to consider when implementing a containerized, microservices architecture.
 
