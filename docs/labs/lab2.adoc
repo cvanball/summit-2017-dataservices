@@ -316,3 +316,5 @@ Stop the OCP environment.
 ----
 [student@localhost ~]$ sudo systemctl stop oc-cluster
 ----
+
+Congratulations!!!!! You have completed this lab.
