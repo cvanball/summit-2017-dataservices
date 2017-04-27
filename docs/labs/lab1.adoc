@@ -140,7 +140,6 @@ registry.access.redhat.com/openshift3/ose                                	v3.4.1
 registry.access.redhat.com/openshift3/ose-pod                            	v3.4.1.12       	310eda5cf7fd    	13 days ago     	205 MB
 registry.access.redhat.com/jboss-eap-7/eap70-openshift                   	latest          	f6ca7f01844e    	3 weeks ago     	1.042 GB
 registry.access.redhat.com/jboss-datavirt-6/datavirt63-openshift         	latest          	837aa4172c2c    	4 weeks ago     	972.6 MB
-
 ----
 
 === Lets explore a Dockerfile
@@ -166,7 +165,7 @@ After gaining access to a repository, we EXPOSE port 80, which allows traffic in
 
 === Build an Image
 
-Now that we have taken a look at the Dockerfile, let's build this image. Since it was already built previously the image is retrieved from the cache.
+Now that we have taken a look at the Dockerfile, lets build this image. Since it was already built previously the image is retrieved from the cache.
 
 [source,bash]
 ----
@@ -188,7 +187,7 @@ Successfully built 3ce031e2bbc5
 
 === Run the Container
 
-Next, let's run the image and make sure it started.
+Next, lets run the image and make sure it started.
 
 [source,bash]
 ----
@@ -207,7 +206,7 @@ ee864ca54c2c    	registry.access.redhat.com/openshift3/ose-docker-registry:v3.4.
 
 Here we are using a few switches to configure the running container the way we want it. We are running a -dt to run in detached mode with a pseudo TTY. Next we are mapping a port from the host to the container. We are being explicit here. We have told  Docker to map port 81 on the host to port 80 in the container. Now, we could have let Docker handle the host side port mapping dynamically by passing a -P or -p 80, in which case Docker would have randomly assigned a port to the container. Finally, we passed in the name of the image that we built earlier.
 
-Okay, let's make sure we can access the web server.
+Okay, lets make sure we can access the web server.
 
 [source,bash]
 ----
@@ -260,7 +259,7 @@ We can see that this gives us quite a bit of information in json format. We can 
 ]
 ----
 
-Let's be more explicit with our docker inspect
+Lets be more explicit with our docker inspect
 
 [source,bash]
 ----
@@ -272,7 +271,7 @@ You should see the IP address that was assigned to the container.
 
 We can apply the same filter to any value in the json output. Try a few different ones.
 
-Now let's look inside the container and see what that environment looks like. We first need to get the PID of the container so we can attach to the PID namespace with nsenter. After we have the PID, go ahead and enter the namespaces of the container substituting the PID on your container for the one listed below. Take a look at the man page to understand all the flags we are passing to nsenter.
+Now lets look inside the container and see what that environment looks like. We first need to get the PID of the container so we can attach to the PID namespace with nsenter. After we have the PID, go ahead and enter the namespaces of the container substituting the PID on your container for the one listed below. Take a look at the man page to understand all the flags we are passing to nsenter.
 
 [source,bash]
 ----
