@@ -49,7 +49,7 @@ You are now logged in to OpenShift and are using the _myproject_ project. You ca
 
 image:images/lab3-console.png[images/lab3-console.png]
 
-First we are going to create a new project called lab3.
+First we are going to create a new project called _lab3_.
 
 [source,bash]
 ----

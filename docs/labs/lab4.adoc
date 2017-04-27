@@ -26,7 +26,7 @@ Login successful.
 You have one project on this server: "myproject"
 ----
 
-You are now logged in to OpenShift and are using the _myproject_ project. First we are going to create a new project called lab4.
+You are now logged in to OpenShift and are using the _myproject_ project. First we are going to create a new project called _lab4_.
 
 [source,bash]
 ----
