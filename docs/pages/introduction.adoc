@@ -17,13 +17,13 @@ OCP adds:
 
 The following topics provide high-level, architectural information on core concepts and objects you will encounter when using OCP. Many of these objects come from Kubernetes, which is extended by OCP to provide a more feature-rich development lifecycle platform.
 
-* Containers and images are the building blocks for deploying your applications.
-* Pods and services allow for containers to communicate with each other and proxy connections.
-* Projects and users provide the space and means for communities to organize and manage their content together.
-* Builds and image streams allow you to build working images and react to new images.
-* Deployments add expanded support for the software development and deployment lifecycle.
-* Routes announce your service to the world.
-* Templates allow for many objects to be created at once based on customized parameters.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/containers_and_images.html#architecture-core-concepts-containers-and-images[Containers and images] are the building blocks for deploying your applications.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/pods_and_services.html#architecture-core-concepts-pods-and-services[Pods and services] allow for containers to communicate with each other and proxy connections.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/projects_and_users.html#architecture-core-concepts-projects-and-users[Projects and users] provide the space and means for communities to organize and manage their content together.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/builds_and_image_streams.html#architecture-core-concepts-builds-and-image-streams[Builds and image streams] allow you to build working images and react to new images.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/deployments.html#architecture-core-concepts-deployments[Deployments] add expanded support for the software development and deployment lifecycle.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html#architecture-core-concepts-routes[Routes] announce your service to the world.
+* https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/templates.html#architecture-core-concepts-templates[Templates] allow for many objects to be created at once based on customized parameters.
 
 What Is the Red Hat OpenShift Container Platform (OCP) Architecture?
 OCP has a microservices-based architecture of smaller, decoupled units that work together. It can run on top of (or alongside) a Kubernetes cluster, with data about the objects stored in etcd, a reliable clustered key-value store. 
@@ -34,7 +34,7 @@ image:images/ocp-architecture.png[images/ocp-architecture.png]
 
 Those services are broken down by function:
 
-* REST APIs, which expose each of the core objects.
+* https://docs.openshift.com/container-platform/3.5/rest_api/index.html#rest-api-index[REST APIs], which expose each of the core objects.
 * Controllers, which read those APIs, apply changes to other objects, and report status or write back to the object.
 
 Users make calls to the REST API to change the state of the system. Controllers use the REST API to read the user’s desired state, and then try to bring the other parts of the system into sync. For example, when a user requests a build they create a "build" object. The build controller sees that a new build has been created, and runs a process on the cluster to perform that build. When the build completes, the controller updates the build object via the REST API and the user sees that their build is complete.

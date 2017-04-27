@@ -1,2 +1,2 @@
-== Lab 3 - Analyzing a Microservices Application
+== Lab 3 - Analyzing a microservices application
 
