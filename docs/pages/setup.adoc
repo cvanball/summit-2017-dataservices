@@ -19,7 +19,7 @@ if not please run the following:
 Cloning into 'summit-2017-dataservices'...
 ----
 
-For those of you following along at home or own pc, just git clone the github repo https://github.com/cvanball/summit-2017-dataservices.git.
+For those of you following along at home or own pc, just git clone the github repo from https://github.com/cvanball/summit-2017-dataservices.git.
 
 === Lab structure explained
 The lab structure we are going to use during this lab is depicted and described below. 
