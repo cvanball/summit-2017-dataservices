@@ -1,0 +1,22 @@
+:imagesdir: ../images
+
+== Acknowlegdement
+
+[cols="2"] 
+|===
+|Version Number
+|Red Hat Summit 2017
+
+|Final as of
+|May 5th, 2017
+
+|Author(s)
+|Bill Kemp
+
+Cojan van Ballegooijen 
+
+Madou Coulibaly
+
+Tariq Islam
+
+|===

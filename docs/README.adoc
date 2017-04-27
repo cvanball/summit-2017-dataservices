@@ -1,0 +1,20 @@
+
+
+image::cover_small.jpg[Summit Logo]
+== L104372 - Exposing data as services in a microservices architecture on OpenShift documentation
+
+https://cvanball.gitbooks.io/L104372/content/[Lab Documentation]
+
+== Generate html/pdf/epub/mobi 
+
+You may locally create rendered forms of the documentation. To do this install https://github.com/GitbookIO/gitbook[gitbook] and https://help.gitbook.com/build/ebookconvert.html[ebook-convert], then execute the following commands from the checkout location:
+
+----
+$ gitbook build ./ L104372
+$ gitbook pdf ./L104372 L104372.pdf
+$ gitbook epub ./L104372 L104372.epub
+$ gitbook mobi ./L104372 L104372.mobi
+----
+
+Once above commands executes successfully, the `L104372` folder, `L104372.pdf`, `L104372.epub`, and `L104372.mobi` will be generated.
+
