@@ -239,3 +239,5 @@ For you convenience we have a script called rmlab4 available which removes all i
 ----
 [student@localhost projects]$ rmlab4
 ----
+
+Congratulations!!!!! You have completed this lab.
