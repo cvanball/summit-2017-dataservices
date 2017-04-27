@@ -1,5 +1,7 @@
 == Lab 3 - Analyzing a microservices application
 
+image:images/msapng[images/msa.png]
+
 Typically, it is best to break down services into the simplest components and then containerize each of them independently. However, when initially migrating an application it is not always easy to break it up into little pieces but you can start with big containers and work towards breaking them into smaller pieces.
 
 In this lab we will create a project which contains multiple container images comprised of multiple services since our application is already a microservices application. In lab 3 we will describe and run the microservices application which is already split up into more manageable pieces.
