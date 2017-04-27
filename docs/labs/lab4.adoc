@@ -1,4 +1,7 @@
 == Lab 4 - Changing the microservices application using data services
+
+image:images/logo_jdv.png[images/logo_jdv.png]
+
 In this lab you will change the microservices application to use data services provided by Red Hat JBoss Data Virtualization. In this process we explore the changes we need to make in order to utilize the capabilities of Red Hat JBoss Data Virtualization.
 
 This lab should be performed on *the machine in front of you* unless otherwise instructed.
