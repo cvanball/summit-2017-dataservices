@@ -11,9 +11,9 @@ Expected completion: 20-30 minutes
 Topics:
 
 * Prerequisites
-* Overview Microservices Application
+* Overview microservices application
 * Exploring OpenShift template
-* Setup environment based on pre-built OpenShift template
+* Setup OCP environment based on pre-built OpenShift template
 * Exploring the running containers
 * Connecting to the application
 
@@ -62,7 +62,7 @@ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git
 to build a new example application in Ruby.
 ----
 
-=== Overview Microservices application
+=== Overview microservices application
 The microservices application we are going to use in lab 3 is a simple AngularJS (https://angularjs.org/) and Spring (http://spring.io/) application using food and wine datas.
 
 Our initial OpenShift template will be using the following four services:
