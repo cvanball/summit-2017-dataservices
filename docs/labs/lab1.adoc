@@ -4,7 +4,8 @@ In this lab we will explore the docker environment within Red Hat OpenShift Cont
 
 This lab should be performed on *the machine in front* of you unless otherwise instructed.
 
-The machine should have been brought up in lab. You can access that machine using username  student and password student
+The machine should have been brought up in lab. 
+You can access that machine using username _student_ and password _student_
 
 Expected completion: 15 minutes
 
@@ -272,7 +273,7 @@ Now lets look inside the container and see what that environment looks like. We 
 
 [source,bash]
 ----
-[student@localhost lab1]$ docker inspect --format \'\{\{ .State.Pid \}\}\' apache
+[student@localhost lab1]$ docker inspect --format '\{\{ .State.Pid \}\}' apache
 15860
 
 [student@localhost lab1]$ man nsenter

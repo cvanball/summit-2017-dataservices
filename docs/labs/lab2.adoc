@@ -12,10 +12,12 @@ Expected completion: 15 minutes
 
 Topics:
 
-* Downloading OpenShift CLI
+* Downloading OpenShift CLI 
 * Extracting the OpenShift CLI
 * Verify OpenShift CLI installation
 * Useful OpenShift CLI commands
+
+TIP: First three topics are already performed on *the machine in front of you*. If you are using this machine you can proceed with paragraph Useful OpenShift CLI commands.
 
 === Downloading OpenShift CLI 
 During this lab, we are going describe how to setup the OpenShift CLI tool and add them to our operating system PATH environment variables so the executable is accessible from any directory on the command line. For your convenience this is explained and for your reference but OpenShift CLI tool is already installed in the OCP environment in front of you. 

@@ -18,8 +18,9 @@ Topics:
 * Connecting to the application
 
 === Prerequisites
-To check if OpenShift is running execute:
-[source,bash]
+To check if OpenShift Container Platform (OCP) is running execute:
+
+source,bash]
 ----
 [student@localhost ~]$ sudo systemctl status oc-cluster
 ----
@@ -180,16 +181,16 @@ Login into the OpenShift Web Console and login with username developer
 
 image:images/lab3-console-project.png[images/lab3-console-project.png]
 
-Click on project lab3 and the lab3 overview page should appear as depicted below.
+Click on project _lab3_ and the lab3 overview page should appear as depicted below.
 
 image:images/lab3-console-overview.png[images/lab3-console-overview.png]
 
 Scroll down and use the menu options to familiarize with the OpenShift lab3 containers.
 
 === Connecting to the application
-An OpenShift Container Platform link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/routes.html#architecture-core-concepts-routes[route] exposes a link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/pods_and_services.html#services[service] at a host name, like _www.example.com_, so that external clients can reach it by name.
+An OpenShift Container Platform link:https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/routes.html#architecture-core-concepts-routes[route] exposes a link:https://docs.openshift.com/container-platform/3.5/architecture/core_concepts/pods_and_services.html#services[service] at a host name, like _www.example.com_, so that external clients can reach it by name.
 
-In the example depicted in screenshots before we can see a route defined in lab3 project which expose the webui of our food and wine microservices application at url: http://wineapp-route-lab3.192.168.122.45.xip.io
+In the example depicted in screenshots before we can see a route defined in _lab3_ project which expose the webui of our food and wine microservices application at url: http://wineapp-route-lab3.192.168.122.45.xip.io
 
 Another way to get the routes is to navigate to the Browse → Routes page.
 Click on the URL of the route and you should be redirected to the food and wine microservices application as depicted below.
@@ -204,6 +205,7 @@ Delete project using OpenShift CLI
 ----
 [student@localhost projects]$ oc delete project lab3
 ----
+
 Remove the docker images
 To remove the created docker images during this lab you can do
 [source,bash]

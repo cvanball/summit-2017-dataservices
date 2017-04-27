@@ -10,7 +10,7 @@ At a more granular level, source table columns that will not be used or required
 
 Let’s see this in action.
 
-First we are going to create a new project called lab4-secure.
+First we are going to create a new project called _lab4-secure_.
 
 [source,bash]
 ----

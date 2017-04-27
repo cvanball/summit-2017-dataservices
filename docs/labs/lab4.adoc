@@ -197,7 +197,7 @@ image:images/lab4-routes.png[images/lab4-routes.png]
 
 image:images/lab4-rhapp-ui.png[images/lab4-rhapp-ui.png]
 
-Click on menu option wine and you should see similar data as depicted below
+Click on menu option _wine_ and you should see similar data as depicted below
 
 image:images/lab4-rhapp-ui-wine.png[images/lab4-rhapp-ui-wine.png]
 
@@ -233,7 +233,7 @@ You can remove the image one by one using:
 [student@localhost projects]$ docker rmi <image id>
 ----
 
-For you convenience we have a script called rmlab4 available which removes all images with rhapp in the name:
+For you convenience we have a script called _rmlab4_ available which removes all images with rhapp in the name:
 
 [source,bash]
 ----
