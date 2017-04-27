@@ -1,5 +1,4 @@
-=
-= Lab 3 - Analyzing a microservices application
+== Lab 3 - Analyzing a microservices application
 
 Typically, it is best to break down services into the simplest components and then containerize each of them independently. However, when initially migrating an application it is not always easy to break it up into little pieces but you can start with big containers and work towards breaking them into smaller pieces.
 
@@ -18,7 +17,7 @@ Topics:
 * Exploring the running containers
 * Connecting to the application
 
-== Prerequisites
+=== Prerequisites
 To check if OpenShift is running execute:
 [source,bash]
 ----
@@ -47,7 +46,7 @@ Using project "myproject".
 
 You are now logged in to OpenShift and are using the _myproject_ project. You can also view the OpenShift web console by using the same credentials to log in using Firefox Web Browser as depicted below.
 
-image:/assets/image20.png[alt=""]
+image:images/lab3-console.png[images/lab3-console.png]
 
 First we are going to create a new project called lab3.
 
@@ -63,7 +62,7 @@ oc new-app centos/ruby-22-centos7~https://github.com/openshift/ruby-ex.git
 to build a new example application in Ruby.
 ----
 
-== Overview Microservices application
+=== Overview Microservices application
 The microservices application we are going to use in lab 3 is a simple AngularJS (https://angularjs.org/) and Spring (http://spring.io/) application using food and wine datas.
 
 Our initial OpenShift template will be using the following four services:
@@ -76,7 +75,7 @@ Our initial OpenShift template will be using the following four services:
 The food- and wine-service are connecting directly to the PostgreSQL environment.
 The illustration below depicts the starting point of our microservices application.
 
-image:/assets/image15.png[alt=""]
+image:images/lab3-architecture.png[images/lab3-architecture.png]
 
 In the next steps, we are going to setup and run the above environment in OCP.
 Exploring Microservices Application
@@ -95,7 +94,7 @@ In the ui-service, food-services and wine-services directory you’ll find all m
 /home/student/summit-2017-dataservices/labs/lab3/projects/wine-service/target/ROOT.war
 Same applies for the projects used in lab 4.
 
-== Exploring OpenShift template
+=== Exploring OpenShift template
 An OpenShift template describes a set of link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/index.html#architecture-core-concepts-index[objects] that can be parameterized and processed to produce a list of objects for creation by OpenShift Container Platform. The objects to create can include anything that users have permission to create within a project, for example link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/pods_and_services.html#services[services], link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/builds_and_image_streams.html#builds[build configurations], and link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/deployments.html#deployments-and-deployment-configurations[deployment configurations]. A template may also define a set of link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/pods_and_services.html#labels[labels] to apply to every object defined in the template. See the link:https://docs.openshift.com/container-platform/3.4/dev_guide/templates.html#dev-guide-templates[template guide] for details about creating and using templates. Check out directory _~/summit-2017-dataservices/labs/lab3_ocp/templates_.
 
 [source,bash]
@@ -110,7 +109,7 @@ In this directory you will find the OpenShift template containing the configurat
 [student@localhost lab3_ocp]$ code templates/lab3-template.json
 ----
 
-== Setup OCP environment based on pre-built OpenShift template
+=== Setup OCP environment based on pre-built OpenShift template
 If you have a JSON or YAML file that defines a template, for example in our case we are using lab3-template.json, you can upload the template to projects using the CLI. This saves the template to the project for repeated use by any user with appropriate access to that project. See for more instructions on link:https://docs.openshift.com/container-platform/3.4/dev_guide/templates.html#writing-templates[writing your own templates].
 Furthermore you can use the CLI to process templates and use the configuration that is generated to create objects as shown below.
 
@@ -176,16 +175,18 @@ build "wineapp-ui-1" started
 
 Now the containers will be built and deployed. Let’s see how it looks like in the OpenShift Web Console.
 
-== Exploring the running the containers
+=== Exploring the running the containers
 Login into the OpenShift Web Console and login with username developer
-image:/assets/image4.png[alt=""]
+
+image:images/lab3-console-project.png[images/lab3-console-project.png]
+
 Click on project lab3 and the lab3 overview page should appear as depicted below.
 
-image:/assets/image16.png[alt=""]
+image:images/lab3-console-overview.png[images/lab3-console-overview.png]
 
 Scroll down and use the menu options to familiarize with the OpenShift lab3 containers.
 
-== Connecting to the application
+=== Connecting to the application
 An OpenShift Container Platform link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/routes.html#architecture-core-concepts-routes[route] exposes a link:https://docs.openshift.com/container-platform/3.4/architecture/core_concepts/pods_and_services.html#services[service] at a host name, like _www.example.com_, so that external clients can reach it by name.
 
 In the example depicted in screenshots before we can see a route defined in lab3 project which expose the webui of our food and wine microservices application at url: http://wineapp-route-lab3.192.168.122.45.xip.io
@@ -193,11 +194,11 @@ In the example depicted in screenshots before we can see a route defined in lab3
 Another way to get the routes is to navigate to the Browse → Routes page.
 Click on the URL of the route and you should be redirected to the food and wine microservices application as depicted below.
 
-image:/assets/image14.png[alt=""]
+image:images/lab3-wineapp-ui.png[images/lab3-wineapp-ui.png]
 
 The wineapp microservices application showcases a web application providing create and read functionality. Click on Wine and/or Food and see if existing data is retrieved from the PostgreSQL database. Furthermore try to add your favorite wine and food using the application.
-
-== Cleanup lab 3
+
+=== Cleanup lab 3
 Delete project using OpenShift CLI
 [source,bash]
 ----
