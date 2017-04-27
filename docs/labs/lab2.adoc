@@ -174,7 +174,7 @@ Openshift client help:
 Log in to the OCP server as admin user:
 
 [source,bash]
-----
+---- 
 [student@localhost ~]$ oc login -u system:admin
 Logged into "https://192.168.122.45:8443" as "system:admin" using existing credentials.  
 
