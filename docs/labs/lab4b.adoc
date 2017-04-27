@@ -6,7 +6,7 @@ Before applying Role Based Access Control (RBAC), note/consider the following:
 A VDB deployed without any defined data roles is open for access to any authenticated user
 Restrict source system access by modeling the VDB such that
 Imported metadata is narrowed to what will be used (directly or indirectly) by the view models
-At a more granular level, source table columns that will not be used or required are removed or the source table marked as non-updatable
+At a more granular level, source table columns that will not be used or required are removed or the source table marked as non-updatable.
 
 Let’s see this in action.
 
@@ -136,6 +136,10 @@ build "rhapp-sec-ui-1" started
 ----
 
 Now the containers will be built and deployed. Let’s see how our web application and in particular the wine and food data looks like when clicking on Wine and Food menu options.
+
+image:images/lab4-rhsecapp-food.png[images/lab4-rhsecapp-food.png]
+
+image:images/lab4-rhsecapp-food.png[images/lab4-rhsecapp-food.png]
 
 Do you see any difference in the wine/food data compared to  the previous lab 4 without security?  
 Explain why…. 
