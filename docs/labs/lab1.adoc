@@ -363,3 +363,5 @@ Apache
 [student@localhost lab1]$ cd $HOME
 [student@localhost ~]$
 ----
+
+Congratulations!!!!! You have completed this lab.

@@ -1,2 +1,313 @@
 == Lab 2 - OpenShift Command Line Interface (CLI)
 
+OpenShift Container Platform ships with a feature rich web console as well as a command line interface tool (CLI) to provide users with a nice interface to work with applications deployed to the platform. The OpenShift CLI is a single executable written in the Go programming language and is available for the following operating systems:
+
+* Microsoft Windows
+* macOS
+* Linux
+
+This lab should be performed on the machine in front of you unless otherwise instructed.
+
+Expected completion: 15 minutes
+
+=== Downloading OpenShift CLI 
+During this lab, we are going describe how to setup the OpenShift CLI tool and add them to our operating system PATH environment variables so the executable is accessible from any directory on the command line. For your convenience this is explained and for your reference but OpenShift CLI tool is already installed in the OCP environment in front of you. 
+
+TIP: This is for your reference. The environment in front of you is already setuo with oc.
+
+The first thing we want to do is download the correct executable for your operating system as linked below:
+OpenShift CLI can be downloaded here from the Red Hat’s Customer Portal: https://access.redhat.com/downloads/content/290
+
+Once the file has been downloaded, you will need to extract the contents as it is a compressed archive. I would suggest saving this file to the following directories:
+
+Windows 
+
+[source,bash]
+----
+C:\> cd C:\OpenShift
+----
+
+macOS 
+
+[source,bash]
+----
+$ cd ~/bin
+----
+
+Linux 
+
+[source,bash]
+----
+$ cd ~/bin
+----
+
+=== Extracting the OpenShift CLI
+Once you have the tools downloaded, you will need to extract the contents:
+
+Windows
+In order to extract a zip archive on windows, you will need a zip utility installed on your system. With newer versions of windows (greater than XP), this is provided by the operating system. Just right click on the downloaded file using file explorer and select to extract the contents.
+
+macOS
+Open up a terminal window and change to the directory where you downloaded the file. Once you are in the directory, enter in the following command:
+
+[source,bash]
+----
+$ tar zxvf oc-3.4.1.12-macosx.tar.gz
+----
+
+Linux
+Open up a terminal window and change to the directory where you downloaded the file. Once you are in the directory, enter in the following command:
+
+[source,bash]
+----
+$ tar zxvf oc-3.4.1.12-linux.tar.gz
+----
+
+Adding oc to your PATH
+Windows
+Because changing your PATH on windows varies by version of the operating system, we will not list each operating system here. However, the general workflow is right click on your computer name inside of the file explorer. Select Advanced system settings. I guess changing your PATH is considered an advanced task? :) Click on the advanced tab, and then finally click on Environment variables. Once the new dialog opens, select the Path variable and add ";C:\OpenShift" at the end. For an easy way out, you could always just copy it to C:\Windows or a directory you know is already on your path. 
+
+macOS
+
+[source,bash]
+----
+$ export PATH=$PATH:~/bin
+----
+
+Linux
+
+[source,bash]
+----
+$ export PATH=$PATH:~/bin
+----
+
+=== Verify
+At this point, we should have the oc tool available for use. Let’s test this out by printing the version of the oc command:
+
+[source,bash]
+----
+[student@localhost ~]$ whereis oc
+oc: /usr/bin/oc /usr/share/man/man1/oc.1.gz
+[student@localhost ~]$ oc version
+oc v3.4.1.12
+kubernetes v1.4.0+776c994
+features: Basic-Auth GSSAPI Kerberos SPNEGO
+
+Server https://192.168.122.45:8443
+openshift v3.4.1.12
+kubernetes v1.4.0+776c994
+----
+
+If you get an error message, the PATH is not updated correctly. If you need help, raise your hand and the instructor will assist.
+
+TIP: The OCP environment is automatically started as a system daemon service called oc-cluster. 
+In other words no need to stop or start the OCP environment. this is for your reference.
+
+You can start the OCP environment using the following command:
+
+[source,bash]
+----
+[student@localhost ~]$ sudo systemctl start oc-cluster
+----
+
+You can stop the OCP environment using the following command:
+
+[source,bash]
+----
+[student@localhost ~]$ sudo systemctl stop oc-cluster
+----
+
+Check the status of the OCP environment using the following command:
+
+[source,bash]
+----
+[student@localhost ~]$ sudo systemctl status oc-cluster
+oc-cluster.service - OpenShift Cluster Service
+   Loaded: loaded (/etc/systemd/system/oc-cluster.service; enabled; vendor preset: disabled)
+   Active: active (exited) since Wed 2017-04-12 04:01:12 EDT; 39min ago
+  Process: 2558 ExecStart=/usr/local/bin/oc-cluster-up.sh (code=exited, status=0/SUCCESS)
+ Main PID: 2558 (code=exited, status=0/SUCCESS)
+   Memory: 0B
+   CGroup: /system.slice/oc-cluster.service
+
+Apr 12 04:01:11 localhost.localdomain oc-cluster-up.sh[2558]: Waiting for API...
+Apr 12 04:01:11 localhost.localdomain oc-cluster-up.sh[2558]: OpenShift serve...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: -- Removing tem...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: -- Server Infor...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: OpenShift serve...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: The server is a...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: https://192.168...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: To login as adm...
+Apr 12 04:01:12 localhost.localdomain oc-cluster-up.sh[2558]: oc login -u sys...
+Apr 12 04:01:12 localhost.localdomain systemd[1]: Started OpenShift Cluster S...
+Hint: Some lines were ellipsized, use -l to show in full.
+----
+
+
+=== Useful CLI commands
+The developer CLI allows interaction with the various objects that are managed by OpenShift Container Platform. Many common oc operations are invoked using the following syntax:
+
+[source,bash]
+----
+[student@localhost ~]$ oc <action> <object_type> <object_name>
+----
+
+Where:
+An <action> to perform, such as get or describe.
+The <object_type> to perform the action on, such as service or the abbreviated svc.
+The <object_name> of the specified <object_type>.
+The student user is sudoer. They can execute commands with \'--as=system:admin\'
+Now, let\’s work with the OCP environment to showcase some useful CLI commands:
+
+Openshift client help:
+
+[source,bash]
+----
+[student@localhost ~]$ oc help
+----
+
+Log in to the OCP server as admin user:
+
+[source,bash]
+----
+[student@localhost ~]$ oc login -u system:admin
+Logged into \"https://192.168.122.45:8443\" as \"system:admin\" using existing credentials.
+
+You have access to the following projects and can switch between them with \'oc project <projectname>\':
+
+	default
+	kube-system
+  	* myproject
+	openshift
+	openshift-infra
+
+Using project \"myproject\".
+----
+
+Check who is logged in:
+
+[source,bash]
+----
+[student@localhost ~]$ oc whoami
+system:admin
+----
+
+Display one or many resources using:  
+
+[source,bash]
+----
+[student@localhost ~]$ oc get 
+[(-o|--output=)json|yaml|wide|custom-columns=...|custom-columns-file=...|go-template=...|go-template-file=...|jsonpath=...|jsonpath-file=...]
+(TYPE [NAME | -l label] | TYPE/NAME ...) [flags] [options]
+----
+
+Possible resources include builds, buildConfigs, services, pods, etc. To see a list of common
+resources, use \'oc get\'. Some resources may omit advanced details that you can see with \'-o wide\'.
+If you want an even more detailed view, use \'oc describe\'.
+
+List all pods in ps output format 
+
+[source,bash]
+----
+[student@localhost ~]$ oc get pods
+----
+
+List all pods and show more details about them
+
+[source,bash]
+----
+[student@localhost ~]$ oc get -o wide pods
+----
+
+List a single pod in JSON output format.
+
+[source,bash]
+----
+[student@localhost ~]$ oc get -o json pod apache 
+----
+
+List a single replication controller with specified ID in ps output format.
+
+[source,bash]
+----
+[student@localhost ~]$ oc get rc apache 
+----
+
+List build config with specified ID in ps output format.
+
+[source,bash]
+----
+[student@localhost ~]$ oc get bc apache 
+----
+
+List deployment config with specified ID in ps output format.
+
+[source,bash]
+----
+[student@localhost ~]$ oc get dc apache 
+----
+
+End the current session.
+
+[source,bash]
+----
+[student@localhost ~]$ oc logout
+----
+
+Log in in OCP as developer user.
+
+[source,bash]
+----
+[student@localhost ~]$ oc login -u developer -p developer
+Login successful.
+
+You have one project on this server: "myproject"
+
+Using project "myproject".
+[student@localhost ~]$ oc get projects
+NAME    	DISPLAY NAME   STATUS
+myproject   My Project 	Active
+----
+
+Check who is logged in. 
+
+[source,bash]
+----
+[student@localhost ~]$ oc whoami
+Developer
+----
+
+Create new project.
+
+[source,bash]
+----
+[student@localhost ~]$ oc new-project <project-name>
+----
+
+Switch to another project.
+
+[source,bash]
+----
+[student@localhost ~]$ oc project <project-name>
+----
+
+Get current status of OCP environment.
+
+[source,bash]
+----
+[student@localhost ~]$ sudo systemctl status oc-cluster
+----
+
+Start the OCP environment.
+ 
+[source,bash]
+----
+[student@localhost ~]$ sudo systemctl start oc-cluster
+----
+
+Stop the OCP environment.
+
+[source,bash]
+----
+[student@localhost ~]$ sudo systemctl stop oc-cluster
+----
