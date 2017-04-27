@@ -15,7 +15,7 @@ You'll also learn what tools to consider when implementing a containerized, micr
 == Audience/Intro/Prerequisites:
 This lab is geared towards developers who are interested in learning how to containerize their data applications. Attendees, during this session, will explore Microservice architecture, Red Hat OpenShift Container Platform, Red Hat JBoss Data Virtualization and Red Hat JBoss Data Grid. To accomplish this, one need a little background or experience in Linux.  
 
-Here you can find the https://cvanball.gitbooks.io/L104372/content/[L104372 - Exposing data as services in a microservices architecture on OpenShift book].
+Here you can find the https://cvanball.gitbooks.io/L104372/content/[L104372 - Exposing data as services in a microservices architecture on OpenShift] book.
 
 == Labs
 

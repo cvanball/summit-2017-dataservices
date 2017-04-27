@@ -6,9 +6,16 @@ OpenShift Container Platform ships with a feature rich web console as well as a 
 * macOS
 * Linux
 
-This lab should be performed on the machine in front of you unless otherwise instructed.
+This lab should be performed on *the machine in front of you* unless otherwise instructed.
 
 Expected completion: 15 minutes
+
+Topics:
+
+* Downloading OpenShift CLI
+* Extracting the OpenShift CLI
+* Verify OpenShift CLI installation
+* Useful OpenShift CLI commands
 
 === Downloading OpenShift CLI 
 During this lab, we are going describe how to setup the OpenShift CLI tool and add them to our operating system PATH environment variables so the executable is accessible from any directory on the command line. For your convenience this is explained and for your reference but OpenShift CLI tool is already installed in the OCP environment in front of you. 
@@ -171,7 +178,7 @@ Openshift client help:
 [student@localhost ~]$ oc help
 ----
 
-Log in to the OCP server as admin user:
+Log in to the OCP server as _admin_ user:
 
 [source,bash]
 ---- 
