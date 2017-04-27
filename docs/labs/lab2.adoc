@@ -149,8 +149,8 @@ Hint: Some lines were ellipsized, use -l to show in full.
 ----
 
 
-=== Useful CLI commands
-The developer CLI allows interaction with the various objects that are managed by OpenShift Container Platform. Many common oc operations are invoked using the following syntax:
+=== Useful OpenShift CLI commands
+The Openshift CLI allows interaction with the various objects that are managed by OpenShift Container Platform. Many common oc operations are invoked using the following syntax:
 
 [source,bash]
 ----
@@ -174,11 +174,11 @@ Openshift client help:
 Log in to the OCP server as admin user:
 
 [source,bash]
-----
+---- 
 [student@localhost ~]$ oc login -u system:admin
-Logged into \"https://192.168.122.45:8443\" as \"system:admin\" using existing credentials.
+Logged into "https://192.168.122.45:8443" as "system:admin" using existing credentials.  
 
-You have access to the following projects and can switch between them with \'oc project <projectname>\':
+You have access to the following projects and can switch between them with 'oc project <projectname>':
 
 	default
 	kube-system
@@ -186,7 +186,7 @@ You have access to the following projects and can switch between them with \'oc 
 	openshift
 	openshift-infra
 
-Using project \"myproject\".
+Using project "myproject".
 ----
 
 Check who is logged in:
