@@ -23,9 +23,10 @@ For those of you following along at home or own pc, just git clone the github re
 
 [source,bash]
 ----
-$ cd <directory name>
+$ cd your_directory_name 
 $ git clone https://github.com/cvanball/summit-2017-dataservices.git
 ----
+
 
 === Lab structure explained
 The lab structure we are going to use during this lab is depicted and described below. 
