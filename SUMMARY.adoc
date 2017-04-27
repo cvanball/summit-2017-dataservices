@@ -6,3 +6,4 @@
 . link:docs/labs/lab2.adoc[Lab 2]
 . link:docs/labs/lab3.adoc[Lab 3]
 . link:docs/labs/lab4.adoc[Lab 4]
+. link:docs/labs/lab4b.adoc[Lab 4 partt II]
