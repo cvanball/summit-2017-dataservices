@@ -90,9 +90,12 @@ Need data from a different source? Custom translators and resource adaptors can 
 |Tools
 |JDV Server includes development and administration tools to
 
-* Create - Use Teiid Designer to define virtual databases containing views, procedures or even dynamic XML documents.
-* Monitor & Manage - Use the Management Console with JBoss EAP or use the JDV JBoss Operations Network (JON) plugin to control any number of servers.
-* Script - Use the AdminShell to automate administrative and testing tasks.
+* Create
+** Use Teiid Designer to define virtual databases containing views, procedures or even dynamic XML documents.
+* Monitor & Manage
+** Use the Management Console with JBoss EAP or use the JDV JBoss Operations Network (JON) plugin to control any number of servers.
+* Script
+** Use the AdminShell to automate administrative and testing tasks.
 
 |===
 
