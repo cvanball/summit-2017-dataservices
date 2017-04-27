@@ -4,8 +4,11 @@
 
 [cols="2"] 
 |===
+|Red Hat Summit 
+|2017
+
 |Version Number
-|Red Hat Summit 2017
+|1.0
 
 |Final as of
 |May 5th, 2017
