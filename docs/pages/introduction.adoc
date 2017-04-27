@@ -1,0 +1,15 @@
+== Introduction
+
+Before we jump into the demo and see how OpenShift can support a polyglot microservice system based on many different services, let’s spend some time talking about the architecture of the demo application and the components the demo is using. 
+
+=== Red Hat OpenShift Container Platform
+Red Hat OpenShift Container Platform (OCP) v3 is a layered system designed to expose underlying Docker-formatted container image and Kubernetes concepts as accurately as possible, with a focus on easy composition of applications by a developer. For example, install Ruby, push code, and add MySQL.
+
+The concept of an application as a separate object is removed in favor of more flexible composition of "services", allowing two web containers to reuse a database or expose a database directly to the edge of the network.
+
+The Docker service provides the abstraction for packaging and creating Linux-based, lightweight container images. Kubernetes provides the cluster management and orchestrates containers on multiple hosts.
+OCP adds:
+* Source code management, builds, and deployments for developers
+* Managing and promoting images at scale as they flow through your system
+* Application management at scale
+* Team and user tracking for organizing a large developer organization

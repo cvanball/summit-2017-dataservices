@@ -1,3 +1,8 @@
 = Summary
 
-. link:docs/pages/ackowledgements.adoc[Acknowledgements]
+. link:docs/pages/acknowledgements.adoc[Acknowledgements]
+. link:docs/pages/introduction.adoc[Introduction]
+. link:docs/labs/lab1.adoc[Lab 1]
+. link:docs/labs/lab2.adoc[Lab 2]
+. link:docs/labs/lab3.adoc[Lab 3]
+. link:docs/labs/lab4.adoc[Lab 4]

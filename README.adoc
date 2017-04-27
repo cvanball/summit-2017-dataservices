@@ -2,8 +2,41 @@
 
 image::cover_small.jpg[Summit Logo]
 == L104372 - Exposing data as services in a microservices architecture on OpenShift documentation
+In this hands-on lab, you’ll learn how to expose data as services in a Microservices Architecture running on Red Hat OpenShift Container Platform (OCP). See how to transform a microservices application to use data services instead of connecting directly to the underlying datasource. 
+In this lab, you'll learn how to use to: 
+Quickly develop a basic container-based application 
+Reuse container images from the Red Hat container registry 
+Migrate a simple microservices application to a containerized version using data services to connect to the underlying data sources
+Get a feel for Red Hat OpenShift Container Platform (OCP)
+
+You'll also learn what tools to consider when implementing a containerized, microservices architecture.
+
+== Audience/Intro/Prerequisites:
+This lab is geared towards developers who are interested in learning how to containerize their data applications. Attendees, during this session, will explore Microservice architecture, Red Hat OpenShift Container Platform, Red Hat JBoss Data Virtualization and Red Hat JBoss Data Grid. To accomplish this, one need a little background or experience in Linux.  
 
 https://cvanball.gitbooks.io/L104372/content/[Lab Documentation]
+
+== Labs
+
+[cols="2"] 
+|===
+|Lab 1
+|Docker refresh (optional)
+
+|Lab 2
+|OpenShift Command Line Interface (CLI)
+
+|Lab 3
+|Analyzing a Microservices Application
+
+|Lab 4
+|Changing the microservices application using data services
+
+|Lab 4 part II
+|Changing the microservices application using data services with security
+
+
+|===
 
 == Generate html/pdf/epub/mobi 
 
