@@ -1,6 +1,6 @@
 == Lab 3 - Analyzing a microservices application
 
-image:images/msapng[images/msa.png]
+image:images/msa.png[images/msa.png]
 
 Typically, it is best to break down services into the simplest components and then containerize each of them independently. However, when initially migrating an application it is not always easy to break it up into little pieces but you can start with big containers and work towards breaking them into smaller pieces.
 
