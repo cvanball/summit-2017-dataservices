@@ -91,6 +91,8 @@ Check out the configuration files that are provided:
 /etc/sysconfig/docker-storage-setup
 ----
 
+Check out the documentation that is provided:
+
 [source,bash]
 ----
 [student@localhost ~]$ rpm -qd docker
@@ -142,7 +144,7 @@ registry.access.redhat.com/jboss-eap-7/eap70-openshift                   	latest
 registry.access.redhat.com/jboss-datavirt-6/datavirt63-openshift         	latest          	837aa4172c2c    	4 weeks ago     	972.6 MB
 ----
 
-=== Lets explore a Dockerfile
+=== Let's explore a Dockerfile
 
 As a part of the Red Hat Software Collections offering, Red Hat provides a number of container images, which are based on the corresponding Software Collections. These include application, daemon, and database images. Here you can see in the FROM command that we are pulling a Apache Web Server base image based on RHEL 7.3 that we are going to use in this example. Containers that are being built inherit the subscriptions of the host they are running on, so you only need to register the host system. Here we are just going to explore a simple Dockerfile. The purpose for this is to have a look at some of the basic commands that are used to construct a Docker image. For this lab, we will explore a basic Apache Dockerfile and then confirm functionality.
 
@@ -221,7 +223,7 @@ Okay, lets make sure we can access the web server.
 
 Start Firefox Web Browser using Applications→Favorites→Firefox Web Browser and point the URL to http://localhost:81 and should see a similar screen as depicted below
 
-image
+image:images/lab1-test-page.png[images/lab1-test-page.png]
 
 Now that we have built an image, launched a container and confirmed that it is running, let\'s do some further inspection of the container. We should take a look at the container IP address. Let\'s use docker inspect to do that.
 
@@ -252,9 +254,6 @@ We can see that this gives us quite a bit of information in json format. We can 
                 	\"MacAddress\": \"02:42:ac:11:00:03\"
             	}
         	}
-    	}
-	}
-]
 ----
 
 Let\'s be more explicit with our docker inspect

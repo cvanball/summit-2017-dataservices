@@ -47,9 +47,9 @@ To make this possible, controllers leverage a reliable stream of changes to the 
 === Red Hat JBoss Data Virtualization
 Red Hat JBoss Data Virtualization (JDV) is a complete data provisioning, federation, integration and management solution that enables organizations to gain actionable and unified information. Red Hat JBoss Data Virtualization enables agile data utilization in three steps:
 
-. Connect: Access data from multiple, heterogeneous data sources.
-. Compose: Create reusable, business-friendly logical data models and views by combining and transforming data.
-. Consume: Make unified data easily consumable through open standard interfaces.
+. *Connect*: Access data from multiple, heterogeneous data sources.
+. *Compose*: Create reusable, business-friendly logical data models and views by combining and transforming data.
+. *Consume*: Make unified data easily consumable through open standard interfaces.
 
 image:images/jdv.png[images/jdv.png]
 
@@ -71,8 +71,8 @@ image:images/jdv-architecture.png[images/jdv-architecture.png]
 
 [cols="2"] 
 |===
-|JDV Components
-|Description
+|*JDV Components*
+|*Description*
 
 |Query Engine
 |The heart of JDV Server is a high-performance query engine that processes relational, XML, XQuery and procedural queries from federated data sources. Features include support for homogeneous schemas, heterogeneous schemas, transactions, and user defined
