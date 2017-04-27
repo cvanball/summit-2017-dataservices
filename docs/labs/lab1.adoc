@@ -53,16 +53,16 @@ docker.service - Docker Application Container Engine
        	├─13043 /usr/bin/docker-containerd-shim-current 5e1c65898c640522f6...
        	└─13109 /usr/bin/docker-containerd-shim-current ee864ca54c2c2e7d9d...
 
-Apr 12 04:46:12 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:12 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:12 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:15 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:16 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:16 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:18 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:18 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:19 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
-Apr 12 04:46:20 localhost.localdomain dockerd-current[1155]: time="2017-04-12...
+Apr 12 04:46:12 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:12 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:12 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:15 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:16 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:16 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:18 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:18 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:19 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
+Apr 12 04:46:20 localhost.localdomain dockerd-current[1155]: time=\"2017-04-12...
 Hint: Some lines were ellipsized, use -l to show in full.
 ----
 
@@ -196,12 +196,12 @@ e9e06e014a73c7250f3c3c23d8be902fbf47db2e110d4d531c8fcadaa51a771c
 
 [student@localhost lab1]$ docker ps
 CONTAINER ID    	IMAGE                                                             	COMMAND              	CREATED         	STATUS          	PORTS                                         	NAMES
-e9e06e014a73    	redhat/apache                                                     	"/usr/local/bin/run-h"   21 seconds ago  	Up 18 seconds   	443/tcp, 8080/tcp, 8443/tcp, 0.0.0.0:81->80/tcp   apache
-ee864ca54c2c    	registry.access.redhat.com/openshift3/ose-docker-registry:v3.4.1.12   "/bin/sh -c 'DOCKER_R"   19 minutes ago  	Up 19 minutes                                                     	k8s_registry.8a800f10_docker-registry-1-j6jhx_default_49d05df7-1ef3-11e7-90e8-5254006bc4cb_65305227
-5e1c65898c64    	registry.access.redhat.com/openshift3/ose-haproxy-router:v3.4.1.12	"/usr/bin/openshift-r"   19 minutes ago  	Up 19 minutes                                                     	k8s_router.6a91aafa_router-1-qcf69_default_49df9473-1ef3-11e7-90e8-5254006bc4cb_d29bf1f4
-04672958b1e3    	registry.access.redhat.com/openshift3/ose-pod:v3.4.1.12           	"/pod"               	19 minutes ago  	Up 19 minutes                                                     	k8s_POD.b6fc0873_docker-registry-1-j6jhx_default_49d05df7-1ef3-11e7-90e8-5254006bc4cb_f5a20da2
-7db3ba876d6b    	registry.access.redhat.com/openshift3/ose-pod:v3.4.1.12           	"/pod"               	19 minutes ago  	Up 19 minutes                                                     	k8s_POD.8f3ae681_router-1-qcf69_default_49df9473-1ef3-11e7-90e8-5254006bc4cb_7697cd22
-333a60f20aa4    	registry.access.redhat.com/openshift3/ose:v3.4.1.12               	"/usr/bin/openshift s"   20 minutes ago  	Up 20 minutes	
+e9e06e014a73    	redhat/apache                                                     	\"/usr/local/bin/run-h\"   21 seconds ago  	Up 18 seconds   	443/tcp, 8080/tcp, 8443/tcp, 0.0.0.0:81->80/tcp   apache
+ee864ca54c2c    	registry.access.redhat.com/openshift3/ose-docker-registry:v3.4.1.12   \"/bin/sh -c \'DOCKER_R\"   19 minutes ago  	Up 19 minutes                                                     	k8s_registry.8a800f10_docker-registry-1-j6jhx_default_49d05df7-1ef3-11e7-90e8-5254006bc4cb_65305227
+5e1c65898c64    	registry.access.redhat.com/openshift3/ose-haproxy-router:v3.4.1.12	\"/usr/bin/openshift-r\"   19 minutes ago  	Up 19 minutes                                                     	k8s_router.6a91aafa_router-1-qcf69_default_49df9473-1ef3-11e7-90e8-5254006bc4cb_d29bf1f4
+04672958b1e3    	registry.access.redhat.com/openshift3/ose-pod:v3.4.1.12           	\"/pod\"               	19 minutes ago  	Up 19 minutes                                                     	k8s_POD.b6fc0873_docker-registry-1-j6jhx_default_49d05df7-1ef3-11e7-90e8-5254006bc4cb_f5a20da2
+7db3ba876d6b    	registry.access.redhat.com/openshift3/ose-pod:v3.4.1.12           	\"/pod\"               	19 minutes ago  	Up 19 minutes                                                     	k8s_POD.8f3ae681_router-1-qcf69_default_49df9473-1ef3-11e7-90e8-5254006bc4cb_7697cd22
+333a60f20aa4    	registry.access.redhat.com/openshift3/ose:v3.4.1.12               	\"/usr/bin/openshift s\"   20 minutes ago  	Up 20 minutes	
 ----
 
 Here we are using a few switches to configure the running container the way we want it. We are running a -dt to run in detached mode with a pseudo TTY. Next we are mapping a port from the host to the container. We are being explicit here. We have told  Docker to map port 81 on the host to port 80 in the container. Now, we could have let Docker handle the host side port mapping dynamically by passing a -P or -p 80, in which case Docker would have randomly assigned a port to the container. Finally, we passed in the name of the image that we built earlier.
@@ -211,9 +211,9 @@ Okay, lets make sure we can access the web server.
 [source,bash]
 ----
 [student@localhost lab1]$ curl http://localhost:81
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">
 	<head>
 		<title>Test Page for the Apache HTTP Server on Red Hat Enterprise Linux</title>
 .....
@@ -223,7 +223,7 @@ Start Firefox Web Browser using Applications→Favorites→Firefox Web Browser a
 
 image
 
-Now that we have built an image, launched a container and confirmed that it is running, let's do some further inspection of the container. We should take a look at the container IP address.  Let's use docker inspect to do that.
+Now that we have built an image, launched a container and confirmed that it is running, let\'s do some further inspection of the container. We should take a look at the container IP address. Let\'s use docker inspect to do that.
 
 === Time to Inspect
 
@@ -236,34 +236,32 @@ We can see that this gives us quite a bit of information in json format. We can 
 
 [source,bash]
 ----
-	"Networks": {
-            	"bridge": {
-                	"IPAMConfig": null,
-                	"Links": null,
-                	"Aliases": null,
-                	"NetworkID": "4c6c77ea7038a36ca39f11d4cfb80cb0e502d975f87d33ba47bccccd0c6c168d",
-                	"EndpointID": "251efeefa42411516842d8d4ca230759d8a63ef6c670a15bc4f4e0ef3faa95ce",
-                	"Gateway": "172.17.0.1",
-                	"IPAddress": "172.17.0.3",
-                	"IPPrefixLen": 16,
-                	"IPv6Gateway": "",
-                	"GlobalIPv6Address": "",
-                	"GlobalIPv6PrefixLen": 0,
-                	"MacAddress": "02:42:ac:11:00:03"
+	\"Networks\": {
+            	\"bridge\": {
+                	\"IPAMConfig\": null,
+                	\"Links\": null,
+                	\"Aliases\": null,
+                	\"NetworkID\": \"4c6c77ea7038a36ca39f11d4cfb80cb0e502d975f87d33ba47bccccd0c6c168d\",
+                	\"EndpointID\": \"251efeefa42411516842d8d4ca230759d8a63ef6c670a15bc4f4e0ef3faa95ce\",
+                	\"Gateway\": \"172.17.0.1\",
+                	\"IPAddress\": \"172.17.0.3\",
+                	\"IPPrefixLen\": 16,
+                	\"IPv6Gateway\": \"\",
+                	\"GlobalIPv6Address\": \"\",
+                	\"GlobalIPv6PrefixLen\": 0,
+                	\"MacAddress\": \"02:42:ac:11:00:03\"
             	}
-        	}We can see that this gives us quite a bit of information in json format. We can scroll around and find the IP address, it will be towards the bottom.
-
-
+        	}
     	}
 	}
 ]
 ----
 
-Lets be more explicit with our docker inspect
+Let\'s be more explicit with our docker inspect
 
 [source,bash]
 ----
-[student@localhost lab1]$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache
+[student@localhost lab1]$ docker inspect --format \'{{ .NetworkSettings.IPAddress }}\' apache
 172.17.0.3
 ----
 
@@ -275,7 +273,7 @@ Now lets look inside the container and see what that environment looks like. We 
 
 [source,bash]
 ----
-[student@localhost lab1]$ docker inspect --format '{{ .State.Pid }}' apache
+[student@localhost lab1]$ docker inspect --format \'{{ .State.Pid }}\' apache
 15860
 
 [student@localhost lab1]$ man nsenter
@@ -356,7 +354,7 @@ $ docker exec <container-name OR container-id> <cmd>
 
 Whew, so we do have some options. Now, remember that this lab is all about containerizing your existing apps. You will need some of the tools listed above to go through the process of containerizing your apps. Troubleshooting problems when you are in a container is going to be something that you get very familiar with.
 
-Before we move on to the next section let's clean up the apache container so we don't have it hanging around.
+Before we move on to the next section let\'s clean up the apache container so we don\'t have it hanging around.
 
 [source,bash]
 ----
