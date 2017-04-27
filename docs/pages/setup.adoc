@@ -28,7 +28,7 @@ $ git clone https://github.com/cvanball/summit-2017-dataservices.git
 ----
 
 === Lab structure explained
-The lab structure we are going to use during this lab is depicted and described  below. 
+The lab structure we are going to use during this lab is depicted and described below. 
 
 [source,bash]
 ----
