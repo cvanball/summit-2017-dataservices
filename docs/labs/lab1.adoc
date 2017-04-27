@@ -273,7 +273,7 @@ Now lets look inside the container and see what that environment looks like. We 
 
 [source,bash]
 ----
-[student@localhost lab1]$ docker inspect --format \'{{ .State.Pid }}\' apache
+[student@localhost lab1]$ docker inspect --format \'\{\{ .State.Pid \}\}\' apache
 15860
 
 [student@localhost lab1]$ man nsenter
