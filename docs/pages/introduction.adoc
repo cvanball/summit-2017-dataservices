@@ -3,6 +3,9 @@
 Before we jump into the demo and see how OpenShift can support a polyglot microservice system based on many different services, let’s spend some time talking about the architecture of the demo application and the components the demo is using. 
 
 === Red Hat OpenShift Container Platform
+
+image:images/logo_ocp.png[images/logo_ocp.png]
+
 Red Hat OpenShift Container Platform (OCP) v3 is a layered system designed to expose underlying Docker-formatted container image and Kubernetes concepts as accurately as possible, with a focus on easy composition of applications by a developer. For example, install Ruby, push code, and add MySQL.
 
 The concept of an application as a separate object is removed in favor of more flexible composition of "services", allowing two web containers to reuse a database or expose a database directly to the edge of the network.
@@ -45,6 +48,9 @@ The controller pattern means that much of the functionality in OCP is extensible
 To make this possible, controllers leverage a reliable stream of changes to the system to sync their view of the system with what users are doing. This event stream pushes changes from etcd to the REST API and then to the controllers as soon as changes occur, so changes can ripple out through the system very quickly and efficiently. However, since failures can occur at any time, the controllers must also be able to get the latest state of the system at startup, and confirm that everything is in the right state. This resynchronization is important, because it means that even if something goes wrong, then the operator can restart the affected components, and the system double checks everything before continuing. The system should eventually converge to the user’s intent, since the controllers can always bring the system into sync.
 
 === Red Hat JBoss Data Virtualization
+
+image:images/logo_jdv.png[images/logo_jdv.png]
+
 Red Hat JBoss Data Virtualization (JDV) is a complete data provisioning, federation, integration and management solution that enables organizations to gain actionable and unified information. Red Hat JBoss Data Virtualization enables agile data utilization in three steps:
 
 . *Connect*: Access data from multiple, heterogeneous data sources.
