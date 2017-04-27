@@ -63,30 +63,30 @@ If you have a JSON or YAML file that defines a template, for example in our case
 [source,bash]
 ----
 [student@localhost lab4_ocp]$ oc process -f templates/lab4-secure-template.json | oc create -f -
-buildconfig \"rhapp-sec-food-service\" created
-buildconfig \"rhapp-sec-jdv\" created
-buildconfig \"rhapp-sec-jdv-ext\" created
-buildconfig \"rhapp-sec-ui\" created
-buildconfig \"rhapp-sec-wine-service\" created
-imagestream \"rhapp-sec-food-service\" created
-imagestream \"rhapp-sec-jdv\" created
-imagestream \"rhapp-sec-jdv-ext\" created
-imagestream \"rhapp-sec-ui\" created
-imagestream \"rhapp-sec-wine-service\" created
-deploymentconfig \"rhapp-sec-food-service\" created
-deploymentconfig \"rhapp-sec-jdv\" created
-deploymentconfig \"rhapp-sec-postgresql\" created
-deploymentconfig \"rhapp-sec-ui\" created
-deploymentconfig \"rhapp-sec-wine-service\" created
-route \"jdbc-rhapp-sec-jdv\" created
-route \"secure-rhapp-sec-jdv\" created
-route \"rhapp-sec-jdv\" created
-route \"rhapp-sec-ui\" created
-service \"rhapp-sec-food-service\" created
-service \"rhapp-sec-jdv\" created
-service \"rhapp-sec-postgresql\" created
-service \"rhapp-sec-ui\" created
-service \"rhapp-sec-wine-service\" created
+buildconfig "rhapp-sec-food-service" created
+buildconfig "rhapp-sec-jdv" created
+buildconfig "rhapp-sec-jdv-ext" created
+buildconfig "rhapp-sec-ui" created
+buildconfig "rhapp-sec-wine-service" created
+imagestream "rhapp-sec-food-service" created
+imagestream "rhapp-sec-jdv" created
+imagestream "rhapp-sec-jdv-ext" created
+imagestream "rhapp-sec-ui" created
+imagestream "rhapp-sec-wine-service" created
+deploymentconfig "rhapp-sec-food-service" created
+deploymentconfig "rhapp-sec-jdv" created
+deploymentconfig "rhapp-sec-postgresql" created
+deploymentconfig "rhapp-sec-ui" created
+deploymentconfig "rhapp-sec-wine-service" created
+route "jdbc-rhapp-sec-jdv" created
+route "secure-rhapp-sec-jdv" created
+route "rhapp-sec-jdv" created
+route "rhapp-sec-ui" created
+service "rhapp-sec-food-service" created
+service "rhapp-sec-jdv" created
+service "rhapp-sec-postgresql" created
+service "rhapp-sec-ui" created
+service "rhapp-sec-wine-service" created
 ----
 
 
@@ -108,8 +108,8 @@ Now start the binary builds using the following commands:
 [source,bash]
 ----
 [student@localhost lab4_secure_ocp]$ oc start-build rhapp-sec-jdv-ext --from-dir=extensions
-Uploading directory \"extensions\" as binary input for the build ...
-build \"rhapp-sec-jdv-ext-2\" started
+Uploading directory "extensions" as binary input for the build ...
+build "rhapp-sec-jdv-ext-2" started
 ----
 
 Go to the OpenShift Web console and navigate to the Builds→Builds page. Make sure the build rhapp-secure-jdv-ext is completed and proceed with the next step.
@@ -117,22 +117,22 @@ Go to the OpenShift Web console and navigate to the Builds→Builds page. Make s
 [source,bash]
 ----
 [student@localhost lab4_secure_ocp]$ oc start-build rhapp-sec-jdv --from-dir=vdb
-Uploading directory \"vdb\" as binary input for the build ...
-build \"rhapp-sec-jdv-2\" started
+Uploading directory "vdb" as binary input for the build ...
+build "rhapp-sec-jdv-2" started
 
 [student@localhost lab4_secure_ocp]$ cd ~/summit-2017-dataservices/labs/lab4/projects
 
 [student@localhost projects]$ oc start-build rhapp-sec-food-service --from-dir=food-service/deployments
-Uploading directory \"food-service/deployments\" as binary input for the build ...
-build \"rhapp-sec-food-service-1\" started
+Uploading directory "food-service/deployments" as binary input for the build ...
+build "rhapp-sec-food-service-1" started
 
 [student@localhost projects]$ oc start-build rhapp-sec-wine-service --from-dir=wine-service/deployments
-Uploading directory \"wine-service/deployments\" as binary input for the build ...
-build \"rhapp-sec-wine-service-1\" started
+Uploading directory "wine-service/deployments" as binary input for the build ...
+build "rhapp-sec-wine-service-1" started
 
 [student@localhost projects]$ oc start-build rhapp-sec-ui --from-dir=ui-service/deployments
-Uploading directory \"ui-service/deployments\" as binary input for the build ...
-build \"rhapp-sec-ui-1\" started
+Uploading directory "ui-service/deployments" as binary input for the build ...
+build "rhapp-sec-ui-1" started
 ----
 
 Now the containers will be built and deployed. Let’s see how our web application and in particular the wine and food data looks like when clicking on Wine and Food menu options.
@@ -181,4 +181,5 @@ For you convenience we have a script called rmlab4secure available which removes
 ----
 
 Congratulations, you’ve finished all labs!!!!! 
+
 In this year’s Summit lab you have learnt how to expose data as services in a microservice architecture using Red Hat JBoss Data Virtualization running on Red Hat OpenShift Container Platform. Got exited, see below for a list of useful resource to get even more excited. Enjoy your further stay at Red Hat Summit 2017. 
