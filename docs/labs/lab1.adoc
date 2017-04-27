@@ -261,7 +261,7 @@ Let\'s be more explicit with our docker inspect
 
 [source,bash]
 ----
-[student@localhost lab1]$ docker inspect --format \'{{ .NetworkSettings.IPAddress }}\' apache
+[student@localhost lab1]$ docker inspect --format '{{ .NetworkSettings.IPAddress }}' apache
 172.17.0.3
 ----
 
