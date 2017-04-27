@@ -2,6 +2,7 @@
 
 . link:docs/pages/acknowledgements.adoc[Acknowledgements]
 . link:docs/pages/introduction.adoc[Introduction]
+. link:docs/pages/setup.adoc[Setup]
 . link:docs/labs/lab1.adoc[Lab 1 - Docker Refresh (optional)]
 . link:docs/labs/lab2.adoc[Lab 2 - OpenShift Command Line Interface (CLI)]
 . link:docs/labs/lab3.adoc[Lab 3 - Analyzing a microservices application]

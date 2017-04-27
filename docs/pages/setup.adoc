@@ -1,0 +1,78 @@
+== Setup
+
+=== Demo Context
+The demo application we have here is a microservices application built using various technologies like Spring, AngularJS and PostgreSQL providing information of food and wine. The food and wine data is served through the food-service and wine-service respectively. The data connection from both the food- and wine-service are tightly coupled to the PostgreSQL database. We would like to decouple the food- and wine-service using data services provided by Red Hat JBoss Data Virtualization and/or Red Hat JBoss Data Grid.
+
+=== Get Lab Materials
+For the convenience of users of the lab, we created a script and installed it on the machine in front of you. If you are in the lab environment please check if _/home/student/summit-2017-dataservices_ exits:
+
+[source,bash]
+----
+[student@localhost ~]$ cd ~/summit-2017-dataservices
+----
+
+if not please run the following:
+
+[source,bash]
+----
+[student@localhost ~]$ getlab
+Cloning into 'summit-2017-dataservices'...
+----
+
+For those of you following along at home or own pc, just git clone the github repo as follows:
+
+[source,bash]
+----
+$ cd <directory name>
+$ git clone https://github.com/cvanball/summit-2017-dataservices.git
+----
+
+=== Lab structure explained
+The lab structure we are going to use during this lab is depicted and described  below. 
+
+[source,bash]
+----
+[student@localhost summit-2017-dataservices]$ tree -d -L 3
+.
+└── labs
+	├── lab1
+	├── lab3
+	│   └── projects
+	├── lab3_ocp
+	│   └── templates
+	├── lab4
+	│   └── projects
+	├── lab4_ocp
+	│   ├── extensions
+	│   ├── templates
+	│   └── vdb
+	└── lab4_secure_ocp
+	│   ├── extensions
+	│   ├── templates
+	│   └── vdb
+----
+
+[cols="2"] 
+|===
+|*Directory*
+|*Description*
+
+|lab1
+|Sample Dockerfile 
+
+|lab3
+|Food/wine microservice app project artifacts like sources and binaries
+
+|lab3_ocp
+|Artifacts for lab3, like OCP template
+
+|lab4
+|Food/wine microservice app project artifacts like sources, binaries and use of JDV
+
+|lab4_ocp
+|Artifacts for lab4 with JDV, like OCP template, JDV extensions, sql script
+
+|lab4_secure_ocp
+|Artifacts for lab4 with JDV, like OCP template, JDV extensions, sql script to showcase security capabilities of JDV
+
+|===
