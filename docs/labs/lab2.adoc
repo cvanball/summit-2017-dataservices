@@ -13,7 +13,7 @@ Expected completion: 15 minutes
 === Downloading OpenShift CLI 
 During this lab, we are going describe how to setup the OpenShift CLI tool and add them to our operating system PATH environment variables so the executable is accessible from any directory on the command line. For your convenience this is explained and for your reference but OpenShift CLI tool is already installed in the OCP environment in front of you. 
 
-TIP: This is for your reference. The environment in front of you is already setuo with oc.
+TIP: This is for your reference. The environment in front of you is already setup with the oc command.
 
 The first thing we want to do is download the correct executable for your operating system as linked below:
 OpenShift CLI can be downloaded here from the Red Hat’s Customer Portal: https://access.redhat.com/downloads/content/290
