@@ -1,0 +1,39 @@
+== Resources
+
+[cols="2"] 
+|===
+
+|Description
+|Website
+
+|OpenShift
+|http://www.openshift.com and https://developers.redhat.com/products/openshift/
+
+|OpenShift CLI tool download
+|https://access.redhat.com/downloads/content/290
+
+|Red Hat Container Catalog
+|https://access.redhat.com/containers
+
+|OpenShift Container Tested Integrations
+|https://access.redhat.com/articles/2176281
+
+|Red Hat JBoss Data Virtualization (JDV) 
+|http://developers.redhat.com/products/datavirt
+
+|Red Hat JDV 6.x Supported Configurations
+|https://access.redhat.com/articles/703663
+
+|Red Hat JBoss Data Grid (JDG)
+|http://developers.redhat.com/products/datagrid
+
+|Red Hat JDG 6.x Supported Configurations
+|https://access.redhat.com/articles/115883
+
+|Red Hat JDG 7.x Supported Configurations 
+|https://access.redhat.com/articles/2435931
+
+|Red Hat Middleware images for OpenShift Documentation
+|https://access.redhat.com/documentation/en/red-hat-xpaas/0/paged/red-hat-xpaas-jdv-for-openshift-image/
+
+|===

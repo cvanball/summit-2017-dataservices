@@ -7,3 +7,4 @@
 . link:docs/labs/lab3.adoc[Lab 3 - Analyzing a microservices application]
 . link:docs/labs/lab4.adoc[Lab 4 - Changing the microservices application using data services]
 . link:docs/labs/lab4b.adoc[Lab 4 part II - Changing the microservices application using data services with security]
+. link:docs/pages/resources.adoc[Resources]
