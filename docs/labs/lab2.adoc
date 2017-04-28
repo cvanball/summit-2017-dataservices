@@ -31,21 +31,21 @@ OpenShift CLI can be downloaded here from the Red Hat’s Customer Portal: https
 
 Once the file has been downloaded, you will need to extract the contents as it is a compressed archive. I would suggest saving this file to the following directories:
 
-Windows 
+*Windows* 
 
 [source,bash]
 ----
 C:\> cd C:\OpenShift
 ----
 
-macOS 
+*macOS*
 
 [source,bash]
 ----
 $ cd ~/bin
 ----
 
-Linux 
+*Linux*
 
 [source,bash]
 ----
@@ -55,11 +55,11 @@ $ cd ~/bin
 === Extracting the OpenShift CLI
 Once you have the tools downloaded, you will need to extract the contents:
 
-Windows
+*Windows*
 
 In order to extract a zip archive on windows, you will need a zip utility installed on your system. With newer versions of windows (greater than XP), this is provided by the operating system. Just right click on the downloaded file using file explorer and select to extract the contents.
 
-macOS
+*macOS*
 
 Open up a terminal window and change to the directory where you downloaded the file. Once you are in the directory, enter in the following command:
 
@@ -68,7 +68,7 @@ Open up a terminal window and change to the directory where you downloaded the f
 $ tar zxvf oc-3.4.1.12-macosx.tar.gz
 ----
 
-Linux
+*Linux*
 
 Open up a terminal window and change to the directory where you downloaded the file. Once you are in the directory, enter in the following command:
 
@@ -79,18 +79,18 @@ $ tar zxvf oc-3.4.1.12-linux.tar.gz
 
 Adding oc to your PATH
 
-Windows
+*Windows*
 
 Because changing your PATH on windows varies by version of the operating system, we will not list each operating system here. However, the general workflow is right click on your computer name inside of the file explorer. Select Advanced system settings. I guess changing your PATH is considered an advanced task? :) Click on the advanced tab, and then finally click on Environment variables. Once the new dialog opens, select the Path variable and add ";C:\OpenShift" at the end. For an easy way out, you could always just copy it to C:\Windows or a directory you know is already on your path. 
 
-macOS
+*macOS*
 
 [source,bash]
 ----
 $ export PATH=$PATH:~/bin
 ----
 
-Linux
+*Linux*
 
 [source,bash]
 ----
@@ -168,11 +168,13 @@ The Openshift CLI allows interaction with the various objects that are managed b
 [student@localhost ~]$ oc <action> <object_type> <object_name>
 ----
 
-Where:
-An <action> to perform, such as get or describe.
-The <object_type> to perform the action on, such as service or the abbreviated svc.
-The <object_name> of the specified <object_type>.
-The student user is sudoer. They can execute commands with \'--as=system:admin\'
+Where::
+- An <action> to perform, such as get or describe.
+- The <object_type> to perform the action on, such as service or the abbreviated svc.
+- The <object_name> of the specified <object_type>.
+
+The student user is sudoer. They can execute commands with \'--as=system:admin\'.
+
 Now, let\’s work with the OCP environment to showcase some useful CLI commands:
 
 Openshift client help:
@@ -328,4 +330,4 @@ Stop the OCP environment.
 [student@localhost ~]$ sudo systemctl stop oc-cluster
 ----
 
-Congratulations!!!!! You have completed this lab.
+=== Congratulations!!!!! You have completed this lab.
