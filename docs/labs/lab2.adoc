@@ -173,9 +173,9 @@ Where::
 - The <object_type> to perform the action on, such as service or the abbreviated svc.
 - The <object_name> of the specified <object_type>.
 
-The student user is sudoer. They can execute commands with \'--as=system:admin\'.
+The student user is sudoer. They can execute commands with '--as=system:admin'.
 
-Now, let\’s work with the OCP environment to showcase some useful CLI commands:
+Now, lets work with the OCP environment to showcase some useful CLI commands:
 
 Openshift client help:
 
@@ -220,8 +220,8 @@ Display one or many resources using:
 ----
 
 Possible resources include builds, buildConfigs, services, pods, etc. To see a list of common
-resources, use \'oc get\'. Some resources may omit advanced details that you can see with \'-o wide\'.
-If you want an even more detailed view, use \'oc describe\'.
+resources, use 'oc get'. Some resources may omit advanced details that you can see with '-o wide'.
+If you want an even more detailed view, use 'oc describe'.
 
 List all pods in ps output format 
 
