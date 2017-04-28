@@ -231,4 +231,4 @@ For you convenience we have a script called _rmlab3_ available which removes all
 [student@localhost projects]$ rmlab3
 ----
 
-Congratulations!!!!! You have completed this lab.
+==== Congratulations!!!!! You have completed this lab.

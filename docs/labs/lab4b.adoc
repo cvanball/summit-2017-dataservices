@@ -146,7 +146,7 @@ Explain why….
 
 TIP: check secure-wine-vdb.xml and secure-food-vdb.xml again.
 
-Cleanup lab4_secure
+=== Cleanup lab4_secure
 
 Delete project using OpenShift CLI
 
@@ -184,6 +184,6 @@ For you convenience we have a script called rmlab4secure available which removes
 [student@localhost projects]$ rmlab4secure
 ----
 
-Congratulations, you’ve finished all labs!!!!! 
+==== Congratulations, you’ve finished all labs!!!!! 
 
 In this year’s Summit lab you have learnt how to expose data as services in a microservice architecture using Red Hat JBoss Data Virtualization running on Red Hat OpenShift Container Platform. Got exited, see below for a list of useful resource to get even more excited. Enjoy your further stay at Red Hat Summit 2017. 
