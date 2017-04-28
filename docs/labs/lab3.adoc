@@ -91,7 +91,8 @@ Familiarize yourself with the initial Microservices Application by opening a cod
 ----
 
 Dive into the code
-In the ui-service, food-services and wine-services directory you’ll find all maven based java projects. To limit the use of wifi during this Summit lab all the projects are prebuilt and the WAR files containing the ui and business logic are already available for your convenience, see target directory. I.e.
+
+CAUTION: In the ui-service, food-services and wine-services directory you’ll find all maven based java projects. To limit the use of wifi during this Summit lab all the projects are prebuilt and the WAR files containing the ui and business logic are already available for your convenience, see target directory. I.e.
 /home/student/summit-2017-dataservices/labs/lab3/projects/ui-service/target/ROOT.war
 /home/student/summit-2017-dataservices/labs/lab3/projects/food-service/target/ROOT.war
 /home/student/summit-2017-dataservices/labs/lab3/projects/wine-service/target/ROOT.war
