@@ -216,9 +216,9 @@ Okay, lets make sure we can access the web server.
 [source,bash]
 ----
 [student@localhost lab1]$ curl http://localhost:81
-<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.1//EN\" \"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd\">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
-<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 		<title>Test Page for the Apache HTTP Server on Red Hat Enterprise Linux</title>
 .....
