@@ -1,7 +1,7 @@
 == Setup
 
 === Demo Context
-The demo application we have here is a microservices application built using various technologies like Spring, AngularJS and PostgreSQL providing information of food and wine. The food and wine data is served through the food-service and wine-service respectively. The data connection from both the food- and wine-service are tightly coupled to the PostgreSQL database. We would like to decouple the food- and wine-service using data services provided by Red Hat JBoss Data Virtualization and/or Red Hat JBoss Data Grid.
+The demo application we have here is a microservices application built using various technologies like Spring, AngularJS and PostgreSQL providing information of food and wine. The food and wine data is served through the food-service and wine-service respectively. The data connection from both the food- and wine-service are tightly coupled to the PostgreSQL database. We would like to decouple the food- and wine-service using data services provided by Red Hat JBoss Data Virtualization.
 
 === Get Lab Materials
 For the convenience of users of the lab, we created a script and installed it on the machine in front of you. If you are in the lab environment please check if _/home/student/summit-2017-dataservices_ exits:
