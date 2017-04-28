@@ -242,11 +242,11 @@ We can see that this gives us quite a bit of information in json format. We can 
 [source,bash]
 ----
 	"Networks": {
-            	"bridge\": {
+            	"bridge": {
                 	"IPAMConfig": null,
                 	"Links": null,
                 	"Aliases": null,
-                	"NetworkID\": "4c6c77ea7038a36ca39f11d4cfb80cb0e502d975f87d33ba47bccccd0c6c168d",
+                	"NetworkID": "4c6c77ea7038a36ca39f11d4cfb80cb0e502d975f87d33ba47bccccd0c6c168d",
                 	"EndpointID": "251efeefa42411516842d8d4ca230759d8a63ef6c670a15bc4f4e0ef3faa95ce",
                 	"Gateway": "172.17.0.1",
                 	"IPAddress": "172.17.0.3",
