@@ -181,7 +181,7 @@ For you convenience we have a script called rmlab4secure available which removes
 
 [source,bash]
 ----
-[student@localhost projects]$ rmlab4secure
+[student@localhost projects]$ rmlab4-sec
 ----
 
 ==== Congratulations, you’ve finished all labs!!!!! 
