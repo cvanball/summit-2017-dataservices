@@ -210,7 +210,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                            "name": "jboss-webserver31-tomcat8-openshift:1.1"
                         }
                     }
                 },
@@ -239,7 +239,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                            "name": "jboss-webserver31-tomcat8-openshift:1.1"
                         }
                     }
                 },
@@ -268,7 +268,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                            "name": "jboss-webserver31-tomcat8-openshift:1.1"
                         }
                     }
                 },

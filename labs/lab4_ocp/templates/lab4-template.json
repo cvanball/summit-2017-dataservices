@@ -209,7 +209,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                            "name": "jboss-webserver31-tomcat8-openshift:1.1"
                         }
                     }
                 },
@@ -277,7 +277,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-datavirt63-openshift:latest"
+                            "name": "jboss-datavirt63-openshift:1.3"
                         },
                         "env": [
                             {
@@ -377,7 +377,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                            "name": "jboss-webserver31-tomcat8-openshift:1.1"
                         }
                     }
                 },
@@ -414,7 +414,7 @@
                         "from": {
                             "kind": "ImageStreamTag",
                             "namespace": "openshift",
-                            "name": "jboss-webserver30-tomcat8-openshift:latest"
+                            "name": "jboss-webserver31-tomcat8-openshift:1.1"
                         }
                     }
                 },
@@ -574,7 +574,7 @@
                             "failurePolicy": "Abort",
                             "execNewPod": {
                                 "containerName": "${APPLICATION_NAME}-jdv",
-                                "command": [ "bash","-c","$HOME/source/extensions/extras/sql/initdb.sh" ]
+                                "command": [ "bash","-c","/tmp/src/extensions/extras/sql/initdb.sh" ]
                             }
                         }
                     }                    
